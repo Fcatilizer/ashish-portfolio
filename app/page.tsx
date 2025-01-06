@@ -21,7 +21,7 @@ export default function Home() {
           A passionate <span className="text-primary">Frontend Developer</span>
         </span>
         <div className={subtitle({ class: "mt-4" })}>
-          Intereseted in both Android App and Web Development
+          Interested in both Android App and Web Development
         </div>
       </div>
 
