@@ -1,4 +1,5 @@
 import { NavbarItem } from "@nextui-org/navbar";
+import { image } from "@nextui-org/theme";
 import { title } from "process";
 
 export type SiteConfig = typeof siteConfig;
@@ -6,6 +7,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Ashish Gaurav",
   description: "Ashish Gaurav Portfolio.",
+  image: "logo.jpg",
   navItems: [
     {
       label: "Home",
