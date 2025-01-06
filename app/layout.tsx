@@ -48,7 +48,7 @@ export default function RootLayout({
               {children}
             </main>
             <footer className="w-full flex items-center justify-center py-3">
-              <Link
+              {/* <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
                 href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
@@ -56,7 +56,7 @@ export default function RootLayout({
               >
                 <span className="text-primary">Ashish Gaurav</span>
                 <p className="text-secondary-500">Portfolio Page</p>
-              </Link>
+              </Link> */}
             </footer>
           </div>
         </Providers>
