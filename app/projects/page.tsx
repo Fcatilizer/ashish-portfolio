@@ -19,7 +19,7 @@ export default function ProjectsPage() {
               <PlayStoreIcon className="inline-block mr-2" />
               <a
                 className="text-secondary"
-                href="https://play.google.com/store/apps/details?id=com.a3group.eyecare"
+                href="https://play.google.com/store/apps/details?id=com.a3.eyecare"
               >
                 Get On Play Store
               </a>
