@@ -3,6 +3,7 @@ import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
 import { Button, ButtonGroup } from "@nextui-org/button";
 import {
+  AttachmentIcon,
   BreifcaseIcon,
   LanguageIcon,
   LocationIcon,
@@ -29,11 +30,11 @@ export default function AboutPage() {
               alt="Card background"
               className="object-cover rounded-xl"
               src="me.jpg"
-              width={270}
+              width={400}
             />
           </CardBody>
         </Card>
-        <ul className="gap-2 grid grid-cols-1 md:grid-cols-2 px-8 list-none">
+        <ul className="gap-2 grid grid-cols-1 md:grid-cols-2 px-2 list-none">
           <li>
             <Card>
               <CardBody>
@@ -86,6 +87,14 @@ export default function AboutPage() {
                   <BreifcaseIcon className="inline-block mr-2" />
                   <span className="text-default-500">
                     VRAIO Software Solutions Pvt Ltd
+                    <a
+                      href="https://github.com/Fcatilizer/INSTAKAS/blob/main/Internship%20Letter%20-%20Ashish%20Gaurav.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Internship Letter"
+                    >
+                      <AttachmentIcon className="inline-block mr-2 text-primary" />
+                    </a>
                   </span>
                 </p>
               </CardBody>

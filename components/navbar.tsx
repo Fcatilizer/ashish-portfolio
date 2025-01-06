@@ -62,14 +62,14 @@ export const Navbar = () => {
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
-          className={clsx(
-            linkStyles({ color: "foreground" }),
-            "data-[active=true]:text-primary data-[active=true]:font-medium",
-          )}
-          color="foreground"
-          href={item.href}
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                )}
+                color="foreground"
+                href={item.href}
               >
-          {item.label}
+                {item.label}
               </NextLink>
             </NavbarItem>
           ))}
@@ -79,33 +79,34 @@ export const Navbar = () => {
           {siteConfig.navItems.map((item) => (
             <NavbarMenuItem key={item.href}>
               <NextLink
-          className={clsx(
-            linkStyles({ color: "foreground" }),
-            "data-[active=true]:text-primary data-[active=true]:font-medium",
-          )}
-          color="foreground"
-          href={item.href}
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                )}
+                color="foreground"
+                href={item.href}
               >
-          {item.label}
+                {item.label}
               </NextLink>
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
       </NavbarContent>
 
-      <NavbarContent
-        className="flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
+      <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="flex gap-2">
           {/* <Link isExternal aria-label="Twitter" href={siteConfig.links.twitter}>
         <TwitterIcon className="text-default-500" />
           </Link> */}
-          <Link isExternal aria-label="Discord" href={siteConfig.links.linkedin}>
-        <LinkedInIcon className="text-default-500" />
+          <Link
+            isExternal
+            aria-label="Discord"
+            href={siteConfig.links.linkedin}
+          >
+            <LinkedInIcon className="text-default-500" />
           </Link>
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-        <GithubIcon className="text-default-500" />
+            <GithubIcon className="text-default-500" />
           </Link>
           <ThemeSwitch />
         </NavbarItem>
@@ -131,8 +132,6 @@ export const Navbar = () => {
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent> */}
-
-      
     </NextUINavbar>
   );
 };
