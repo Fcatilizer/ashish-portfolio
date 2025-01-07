@@ -5,6 +5,7 @@ import { Button, ButtonGroup } from "@nextui-org/button";
 import {
   AttachmentIcon,
   BreifcaseIcon,
+  GithubIcon,
   LanguageIcon,
   LocationIcon,
   UniversityIcon,
@@ -34,7 +35,7 @@ export default function AboutPage() {
             />
           </CardBody>
         </Card>
-        <ul className="gap-2 grid grid-cols-1 md:grid-cols-2 px-2 list-none">
+        <ul className="gap-2 grid grid-cols-1 md:grid-cols-2 px-0 list-none">
           <li>
             <Card>
               <CardBody>
@@ -86,14 +87,13 @@ export default function AboutPage() {
                 <p className="mt-2">
                   <BreifcaseIcon className="inline-block mr-2" />
                   <span className="text-default-500">
-                    VRAIO Software Solutions Pvt Ltd
                     <a
                       href="https://github.com/Fcatilizer/INSTAKAS/blob/main/Internship%20Letter%20-%20Ashish%20Gaurav.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Internship Letter"
                     >
-                      <AttachmentIcon className="inline-block mr-2 text-primary" />
+                      VRAIO Software Solutions Pvt Ltd
                     </a>
                   </span>
                 </p>
@@ -114,14 +114,31 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-2">
                   <LanguageIcon className="inline-block mr-2" />
-                  <span>Language : </span>
-                  English, Hindi
+                  <span className="text-default-500">English, Hindi</span>
                 </p>
               </CardBody>
             </Card>
           </li>
         </ul>
       </div>
+      <Card>
+        <CardBody>
+          <h4>Build With:</h4>
+          <p>NextJS + NextUI</p>
+          <div className="flex items-center justify-center">
+            <small className="text-default-500">
+              <a
+                href="https://github.com/Fcatilizer/ashish-portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Github Repository"
+              >
+                <GithubIcon className="inline-block mr-2" />
+              </a>
+            </small>
+          </div>
+        </CardBody>
+      </Card>
     </div>
   );
 }
