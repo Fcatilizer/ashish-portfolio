@@ -13,7 +13,7 @@ import {
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+    <div className="flex flex-col items-center justify-center gap-4">
       <h1 className={title()}>About Me</h1>
       <div className="flex flex-col md:flex-row items-center justify-center gap-2 py-8 md:py-10">
         <Card className="py-4">
@@ -67,15 +67,14 @@ export default function AboutPage() {
                 </p>
                 <p>
                   <span className="text-default-500">Phone : </span>
-                  
-                    <a
-                      className="text-primary"
-                      href="tel:+917321073159"
-                      aria-label="Phone Number"
-                    >
-                      +91 7321073159
-                    </a>
-                  
+
+                  <a
+                    className="text-primary"
+                    href="tel:+917321073159"
+                    aria-label="Phone Number"
+                  >
+                    +91 7321073159
+                  </a>
                 </p>
                 <p className="mt-2">
                   <LocationIcon className="inline-block mr-2" />
