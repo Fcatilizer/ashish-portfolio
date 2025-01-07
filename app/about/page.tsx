@@ -67,7 +67,15 @@ export default function AboutPage() {
                 </p>
                 <p>
                   <span className="text-default-500">Phone : </span>
-                  <span className="text-primary">+91-7321073159</span>
+                  
+                    <a
+                      className="text-primary"
+                      href="tel:+917321073159"
+                      aria-label="Phone Number"
+                    >
+                      +91 7321073159
+                    </a>
+                  
                 </p>
                 <p className="mt-2">
                   <LocationIcon className="inline-block mr-2" />
