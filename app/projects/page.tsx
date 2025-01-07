@@ -12,10 +12,11 @@ export default function ProjectsPage() {
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold">Eye Care</p>
             <small className="text-default-500 text-left">
-              keep records of their prescription in the cloud and access them
-              from anywhere.
+              {
+                "Keep records of Eye prescription in the cloud and access them from anywhere at anytime."
+              }
             </small>
-            <h4 className="font-bold text-large flex items-center">
+            <h4 className="font-bold text-large flex items-center mt-2">
               <PlayStoreIcon className="inline-block mr-2" />
               <a
                 className="text-secondary"
@@ -37,10 +38,11 @@ export default function ProjectsPage() {
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <p className="text-tiny uppercase font-bold">Library Management</p>
             <small className="text-default-500 text-left">
-              Library Books Management Apps for both Student & Teachers Login.
-              Easy Login with book search, assign, add options.
+              {
+                "Library Books Management Apps with both Student & Teachers Login. Easy Login with book search, assign, add options."
+              }
             </small>
-            <h4 className="font-bold text-large flex items-center">
+            <h4 className="font-bold text-large flex items-center mt-2">
               <GithubIcon className="inline-block mr-2" />
               <a
                 className="text-secondary"

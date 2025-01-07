@@ -51,8 +51,8 @@ export default function RootLayout({
               {/* <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
+                href="https://github.com/Fcatilizer/ashish-portfolio"
+                title="Ashish Gaurav Portfolio"
               >
                 <span className="text-primary">Ashish Gaurav</span>
                 <p className="text-secondary-500">Portfolio Page</p>

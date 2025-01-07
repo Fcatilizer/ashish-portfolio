@@ -42,12 +42,31 @@ export default function AboutPage() {
                 <h4 className="font-bold text-large">About Me</h4>
                 <p>
                   {
-                    "I am a passionate Frontend Developer interested in both Android App and Web Development."
+                    "I am a passionate Android App and Web Developr. Developer of "
                   }
+                  <a
+                    className="text-primary"
+                    href="https://play.google.com/store/apps/details?id=com.a3.eyecare"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Eye Care App"
+                  >
+                    Eye Care
+                  </a>
+                  {" App."}
                 </p>
                 <p className="mt-2">
                   <UniversityIcon className="inline-block mr-2" />
-                  <span className="text-default-500">Adamas University</span>
+                  <span className="text-default-500">
+                    <a
+                      href="https://adamasuniversity.ac.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Adamas University"
+                    >
+                      Adamas University
+                    </a>
+                  </span>
                 </p>
               </CardBody>
             </Card>
@@ -78,7 +97,15 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-2">
                   <LocationIcon className="inline-block mr-2" />
-                  <span className="text-default-500">India, Bihar, Patna</span>
+                  <a
+                    className="text-default-500"
+                    href="https://www.google.com/maps/place/Patna,+Bihar,+India"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Location"
+                  >
+                    India, Bihar, Patna
+                  </a>
                 </p>
               </CardBody>
             </Card>
@@ -88,8 +115,17 @@ export default function AboutPage() {
               <CardBody>
                 <h4 className="font-bold text-large">Experience</h4>
                 <p>
-                  FrontEnd Devlopment of 25+ Webpage based on Figma Designs.
-                  Buit with pure HTML, CSS and JS
+                  Frontend Development of 25+ Webpages based on{" "}
+                  <a
+                    className="text-primary"
+                    href="https://www.figma.com/design/c2hRWKAuq2Xn1vMU3v16Cj/Insta-KAS-(21-06-23)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Frontend Projects"
+                  >
+                    Figma Designs.{" "}
+                  </a>
+                  Built with pure HTML, CSS, and JS.
                 </p>
                 <p className="mt-2">
                   <BreifcaseIcon className="inline-block mr-2" />
@@ -133,7 +169,7 @@ export default function AboutPage() {
           <h4>Build With:</h4>
           <p>NextJS + NextUI</p>
           <div className="flex items-center justify-center">
-            <small className="text-default-500">
+            <small className="text-secondary">
               <a
                 href="https://github.com/Fcatilizer/ashish-portfolio"
                 target="_blank"
