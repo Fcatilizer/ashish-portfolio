@@ -38,7 +38,9 @@ const BlogPage = async (props: { params: Params }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <a className="text-label-small text-tertiary">{formatDate(data.date)}</a>
+      <div className="text-label-small text-tertiary">
+        {formatDate(data.date)}
+      </div>
       <MDXContent source={mdxSource} />
     </div>
   );
