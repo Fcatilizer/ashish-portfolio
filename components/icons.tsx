@@ -24,6 +24,30 @@ export const Logo: React.FC<IconSvgProps> = ({
   </svg>
 );
 
+export const VerticalBarIcon: React.FC<IconSvgProps> = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}) => {
+  return (
+    <svg
+      // height={size || height}
+      viewBox="0 0 24 24"
+      // width={size || width}
+      {...props}
+    >
+      <path
+        d="M12 2V22"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
 export const AttachmentIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,

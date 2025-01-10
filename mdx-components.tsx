@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import type { ComponentType } from "react";
+import { VerticalBarIcon } from "./components/icons";
 
 type CustomMdxComponents = {
   h1: ComponentType;
@@ -36,10 +37,10 @@ export const customMdxComponents: CustomMdxComponents = {
     />
   ),
   blockquote: (props) => (
-    <blockquote
-      className="text-body-large bg-primary-container text-on-primary-container p-4 rounded-lg"
-      {...props}
-    />
+    <div className="flex items-center gap-2 bg-surface-variant p-4 rounded-lg">
+      {/* <VerticalBarIcon className="text-secondary inline-block" /> */}
+      <blockquote className="text-body-large" {...props} />
+    </div>
   ),
 };
 

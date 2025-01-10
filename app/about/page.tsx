@@ -85,12 +85,12 @@ export default function AboutPage() {
                   </a>
                 </p>
                 <p>
-                  <span className="text-default-500">Phone : </span>
+                  <span className="text-default-500">X/Twitter: </span>
 
                   <a
                     className="text-primary"
-                    href="tel:+917321073159"
-                    aria-label="Phone Number"
+                    href="https://x.com/ashishgaurav203"
+                    aria-label="X/Twitter"
                   >
                     +91 7321073159
                   </a>
