@@ -92,7 +92,7 @@ export default function AboutPage() {
                     href="https://x.com/ashishgaurav203"
                     aria-label="X/Twitter"
                   >
-                    +91 7321073159
+                    /ashishgaurav203
                   </a>
                 </p>
                 <p className="mt-2">
