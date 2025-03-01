@@ -21,7 +21,7 @@ export default function Home() {
         <span className={title({ color: "violet" })}>Ashish Gaurav&nbsp;</span>
         <br />
         <span className={title()}>
-          A passionate <span className="text-primary">Frontend Developer</span>
+          A passionate <span className="text-primary">Web Developer</span>
         </span>
         <div className={subtitle({ class: "mt-4" })}>
           Interested in both Android App and Web Development
