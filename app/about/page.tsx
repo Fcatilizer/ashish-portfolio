@@ -39,37 +39,36 @@ export default function AboutPage() {
         {/* Info Grid */}
         <ul className="gap-6 grid grid-cols-1 md:grid-cols-2 list-none w-full md:w-auto">
           {/* About Me */}
-          <li>
+            <li>
             <Card className="p-5 rounded-2xl shadow-md hover:shadow-xl transition-shadow h-full">
               <CardBody className="flex flex-col space-y-3">
-                <h4 className="font-semibold text-lg">Education</h4>
-                <p className="text-default-600">
-                  Studied{" "}
-                  <a
-                    className="text-primary font-medium hover:underline"
-                    href="https://play.google.com/store/apps/details?id=com.a3.eyecare"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    B.Tech (Hons.) in Computer Science and Engineering
-                  </a>{" "}
-                  {/* App. */}
-                </p>
-                <br />
-                <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
-                  <UniversityIcon className="inline-block mr-2 text-primary" />
-                  <a
-                    href="https://adamasuniversity.ac.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-default-500 hover:text-primary transition"
-                  >
-                    Adamas University
-                  </a>
-                </div>
+              <h4 className="font-semibold text-lg">Education</h4>
+              <p className="text-default-600">
+                Pursued{" "}
+                <a
+                className="text-primary font-medium hover:underline"
+                href="https://en.wikipedia.org/wiki/Bachelor_of_Technology"
+                target="_blank"
+                rel="noopener noreferrer"
+                >
+                B.Tech (Hons.) in Computer Science and Engineering
+                </a>
+              </p>
+              <br />
+              <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
+                <UniversityIcon className="inline-block mr-2 text-primary" />
+                <a
+                href="https://adamasuniversity.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-default-500 hover:text-primary transition"
+                >
+                Adamas University
+                </a>
+              </div>
               </CardBody>
             </Card>
-          </li>
+            </li>
 
           {/* Contact Info */}
           <li>
