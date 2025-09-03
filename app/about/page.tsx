@@ -42,20 +42,21 @@ export default function AboutPage() {
           <li>
             <Card className="p-5 rounded-2xl shadow-md hover:shadow-xl transition-shadow h-full">
               <CardBody className="flex flex-col space-y-3">
-                <h4 className="font-semibold text-lg">About Me</h4>
+                <h4 className="font-semibold text-lg">Education</h4>
                 <p className="text-default-600">
-                  I am a passionate Android App and Web Developer. Developer of{" "}
+                  Studied{" "}
                   <a
                     className="text-primary font-medium hover:underline"
                     href="https://play.google.com/store/apps/details?id=com.a3.eyecare"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Eye Care
+                    B.Tech (Hons.) in Computer Science and Engineering
                   </a>{" "}
-                  App.
+                  {/* App. */}
                 </p>
-                <p className="flex items-center">
+                <br />
+                <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
                   <UniversityIcon className="inline-block mr-2 text-primary" />
                   <a
                     href="https://adamasuniversity.ac.in/"
@@ -65,7 +66,7 @@ export default function AboutPage() {
                   >
                     Adamas University
                   </a>
-                </p>
+                </div>
               </CardBody>
             </Card>
           </li>
@@ -95,7 +96,7 @@ export default function AboutPage() {
                     /ashishgaurav203
                   </a>
                 </p>
-                <p className="flex items-center">
+                <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
                   <LocationIcon className="inline-block mr-2 text-primary" />
                   <a
                     className="text-default-500 hover:text-primary transition"
@@ -105,7 +106,7 @@ export default function AboutPage() {
                   >
                     India, Bihar, Patna
                   </a>
-                </p>
+                </div>
               </CardBody>
             </Card>
           </li>
