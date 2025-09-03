@@ -24,11 +24,9 @@ export default function AboutPage() {
             <small className="text-default-500">
               Android App & Web Developer
             </small>
-            <h4 className="font-semibold text-lg mt-1">
-              B.Tech (Hons.) CSE
-            </h4>
+            <h4 className="font-semibold text-lg mt-1">B.Tech (Hons.) CSE</h4>
           </CardHeader>
-          <CardBody className="overflow-visible py-6 flex justify-center">
+          <CardBody className="flex items-center justify-center py-6">
             <Image
               alt="Profile"
               className="object-cover rounded-2xl border shadow-sm"
@@ -173,16 +171,21 @@ export default function AboutPage() {
                       Languages:{" "}
                     </span>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      {["Python", "Django", "HTML", "CSS", "JavaScript", "Dart"].map(
-                        (lang) => (
-                          <span
-                            key={lang}
-                            className="px-2 py-1 text-sm bg-default-100 rounded-lg text-default-700"
-                          >
-                            {lang}
-                          </span>
-                        )
-                      )}
+                      {[
+                        "Python",
+                        "Django",
+                        "HTML",
+                        "CSS",
+                        "JavaScript",
+                        "Dart",
+                      ].map((lang) => (
+                        <span
+                          key={lang}
+                          className="px-2 py-1 text-sm bg-default-100 rounded-lg text-default-700"
+                        >
+                          {lang}
+                        </span>
+                      ))}
                     </div>
                   </div>
                   <div>
@@ -190,16 +193,14 @@ export default function AboutPage() {
                       Frameworks:{" "}
                     </span>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      {["Django", "Flutter", "React", "Next.js"].map(
-                        (fw) => (
-                          <span
-                            key={fw}
-                            className="px-2 py-1 text-sm bg-default-100 rounded-lg text-default-700"
-                          >
-                            {fw}
-                          </span>
-                        )
-                      )}
+                      {["Django", "Flutter", "React", "Next.js"].map((fw) => (
+                        <span
+                          key={fw}
+                          className="px-2 py-1 text-sm bg-default-100 rounded-lg text-default-700"
+                        >
+                          {fw}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
