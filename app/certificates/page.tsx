@@ -1,3 +1,5 @@
+"use client";
+
 import { title } from "@/components/primitives";
 import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
@@ -5,111 +7,81 @@ import { Link } from "@nextui-org/link";
 import { Divider } from "@nextui-org/divider";
 
 export default function CertificatesPage() {
-  return (
-    <div>
-      <h1 className={title()}>My Certificates</h1>
+  const certificates = [
+    {
+      name: "Getting Started with Git and GitHub",
+      provider: "Coursera, IBM",
+      desc: "Usage of Git and GitHub with the appropriate license for projects. CLI configuration and experience.",
+      logo: "https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png",
+      link: "https://www.coursera.org/account/accomplishments/verify/J4LRPNWMG5KQ",
+      linkLabel: "Check Credentials on Coursera",
+    },
+    {
+      name: "Introduction to Cloud Computing",
+      provider: "Coursera, IBM",
+      desc: "An introduction to cloud computing with hands-on experience in IBM Cloud deployment.",
+      logo: "https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png",
+      link: "https://www.coursera.org/account/accomplishments/certificate/2C7WE69LR6FQ",
+      linkLabel: "Check Credentials on Coursera",
+    },
+    {
+      name: "CS50 Web Programming with Python and JavaScript",
+      provider: "EDX, HarvardX",
+      desc: "A course by HarvardX focusing on modern Web Programming with Python and JavaScript.",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/EdX_newer_logo.svg",
+      link: "https://courses.edx.org/certificates/d70991c00ec44aed8c50b23e4c52a4e5",
+      linkLabel: "Check Credentials on EdX",
+    },
+  ];
 
-      <div className="mt-4 py-8 md:py-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="nextui logo"
-              height={40}
-              radius="sm"
-              src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png?auto=format%2Ccompress&dpr=1"
-              width={40}
-            />
-            <div className="flex flex-col text-left">
-              <p className="text-md">Getting started with Git and Github</p>
-              <p className="text-small text-default-500">Coursera, IBM</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>
-              Usage of Git and Github with the appropiate license for projects.
-              CLI configuration and experience.
-            </p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link
-              isExternal
-              showAnchorIcon
-              href="https://www.coursera.org/account/accomplishments/verify/J4LRPNWMG5KQ"
-            >
-              Check Credentaials on Coursera.
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="nextui logo"
-              height={40}
-              radius="sm"
-              src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png?auto=format%2Ccompress&dpr=1"
-              width={40}
-            />
-            <div className="flex flex-col text-left">
-              <p className="text-md">Introduction to Cloud Computing</p>
-              <p className="text-small text-default-500">Coursera, IBM</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>
-              An introduction course of cloud computing and hands on experience
-              with IBM cloud deployment. Course provided by IBM.
-            </p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link
-              isExternal
-              showAnchorIcon
-              href="https://www.coursera.org/account/accomplishments/certificate/2C7WE69LR6FQ"
-            >
-              Check Credentaials on Coursera.
-            </Link>
-          </CardFooter>
-        </Card>
-        <Card className="max-w-[400px]">
-          <CardHeader className="flex gap-3">
-            <Image
-              alt="nextui logo"
-              // height={40}
-              radius="sm"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/EdX_newer_logo.svg/1200px-EdX_newer_logo.svg.png"
-              width={40}
-            />
-            <div className="flex flex-col text-left">
-              <p className="text-md">
-                CS50 Web Programming with Python and Javascript
+  return (
+    <section className="flex flex-col items-center justify-center py-12 md:py-20 px-6">
+      <h1 className={`${title()} text-center mb-12`}>My Certificates</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+        {certificates.map((cert, idx) => (
+          <Card
+            key={idx}
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-transform"
+          >
+            <CardHeader className="flex gap-3 items-center p-6">
+              <Image
+                alt={`${cert.provider} logo`}
+                width={40}
+                height={40}
+                radius="sm"
+                src={cert.logo}
+                className="object-contain"
+              />
+              <div className="flex flex-col text-left">
+                <p className="text-md font-semibold">{cert.name}</p>
+                <p className="text-small text-default-500">{cert.provider}</p>
+              </div>
+            </CardHeader>
+
+            <Divider className="opacity-20" />
+
+            <CardBody className="px-6 py-4">
+              <p className="text-sm text-default-500 leading-relaxed">
+                {cert.desc}
               </p>
-              <p className="text-small text-default-500">EDX, HarvardX</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody>
-            <p>
-              A course of study offered by HarvardX, an online learning
-              initiative of Harvard University for Web Programming with Python
-              and Javascript.
-            </p>
-          </CardBody>
-          <Divider />
-          <CardFooter>
-            <Link
-              isExternal
-              showAnchorIcon
-              href="https://courses.edx.org/certificates/d70991c00ec44aed8c50b23e4c52a4e5"
-            >
-              Check Credentaials on Edx Courses.
-            </Link>
-          </CardFooter>
-        </Card>
+            </CardBody>
+
+            <Divider className="opacity-20" />
+
+            <CardFooter className="px-6 py-4">
+              <Link
+                isExternal
+                showAnchorIcon
+                href={cert.link}
+                className="text-primary font-medium hover:underline"
+              >
+                {cert.linkLabel}
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }

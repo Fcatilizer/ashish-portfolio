@@ -244,6 +244,37 @@ export const GithubIcon: React.FC<IconSvgProps> = ({
   );
 };
 
+// export const CertificateIcon = (props: IconSvgProps) => (
+//   <svg
+//     aria-hidden="true"
+//     fill="none"
+//     focusable="false"
+//     height="1em"
+//     role="presentation"
+//     viewBox="0 0 24 24"
+//     width="1em"
+//     {...props}
+//   >
+//     <circle
+//       cx="12"
+//       cy="8"
+//       r="5"
+//       stroke="currentColor"
+//       strokeWidth="2"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//     />
+//     <path
+//       d="M9 14L7 21L12 18L17 21L15 14"
+//       stroke="currentColor"
+//       strokeWidth="2"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//     />
+//   </svg>
+// );
+
+
 export const LinkedInIcon: React.FC<IconSvgProps> = ({
   size = 24,
   width,

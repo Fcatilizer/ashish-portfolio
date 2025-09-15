@@ -2,12 +2,12 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-
 import { Providers } from "./providers";
-
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import BottomNav from "@/components/BottomNav";
+import SocialChips from "@/components/SocialChips";
 
 export const metadata: Metadata = {
   title: {
@@ -42,12 +42,24 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              {children}
+          <div className="relative flex flex-col min-h-screen">
+            {/* Social Chips - Always visible */}
+            <SocialChips />
+            
+            {/* Desktop Navbar - hidden on mobile */}
+            <div className="hidden md:block">
+              <Navbar />
+            </div>
+            
+            {/* Main content with responsive padding */}
+            <main className="container mx-auto max-w-7xl px-6 flex-1 pt-6 md:pt-16 pb-16 md:pb-0 flex flex-col justify-center min-h-0">
+              <div className="w-full">
+                {children}
+              </div>
             </main>
-            <footer className="w-full flex items-center justify-center py-3">
+            
+            {/* Desktop Footer - hidden on mobile */}
+            <footer className="hidden md:flex w-full items-center justify-center py-3 mt-auto">
               {/* <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
@@ -58,6 +70,9 @@ export default function RootLayout({
                 <p className="text-secondary-500">Portfolio Page</p>
               </Link> */}
             </footer>
+            
+            {/* Mobile Bottom Navigation */}
+            <BottomNav />
           </div>
         </Providers>
       </body>

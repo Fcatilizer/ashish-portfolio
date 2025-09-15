@@ -21,10 +21,10 @@ export const siteConfig = {
       label: "Certifications",
       href: "/certificates",
     },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
+    // {
+    //   label: "Blog",
+    //   href: "/blog",
+    // },
     {
       label: "About",
       href: "/about",

@@ -1,3 +1,5 @@
+"use client";
+
 import { title } from "@/components/primitives";
 import { Card, CardHeader, CardBody } from "@nextui-org/card";
 import { Image } from "@nextui-org/image";
@@ -11,13 +13,13 @@ import {
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
-      <h1 className={title()}>About Me</h1>
+    <section className="flex flex-col items-center justify-center gap-10 px-6 py-12 md:py-20">
+      <h1 className={`${title()} text-center`}>About Me</h1>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-6 py-8 md:py-10">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-8 w-full max-w-6xl">
         {/* Profile Card */}
-        <Card className="py-6 px-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow w-full md:w-80">
-          <CardHeader className="pb-0 flex-col items-center text-center">
+        <Card className="flex-shrink-0 w-full md:w-80 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow bg-white/5 backdrop-blur-xl border border-white/10">
+          <CardHeader className="flex flex-col items-center text-center pb-0 pt-6">
             <p className="text-sm uppercase font-bold tracking-wide">
               Ashish Gaurav
             </p>
@@ -37,11 +39,11 @@ export default function AboutPage() {
         </Card>
 
         {/* Info Grid */}
-        <ul className="gap-6 grid grid-cols-1 md:grid-cols-2 list-none w-full md:w-auto">
-          {/* About Me */}
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          {/* Education */}
           <li>
-            <Card className="p-5 rounded-2xl shadow-md hover:shadow-xl transition-shadow h-full">
-              <CardBody className="flex flex-col space-y-3">
+            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
+              <CardBody className="flex flex-col space-y-4">
                 <h4 className="font-semibold text-lg">Education</h4>
                 <p className="text-default-600">
                   Pursued{" "}
@@ -54,8 +56,7 @@ export default function AboutPage() {
                     B.Tech (Hons.) in Computer Science and Engineering
                   </a>
                 </p>
-                <br />
-                <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
+                <div className="mt-4 pt-3 border-t border-white/20 flex items-center">
                   <UniversityIcon className="inline-block mr-2 text-primary" />
                   <a
                     href="https://adamasuniversity.ac.in/"
@@ -72,7 +73,7 @@ export default function AboutPage() {
 
           {/* Contact Info */}
           <li>
-            <Card className="p-5 rounded-2xl shadow-md hover:shadow-xl transition-shadow h-full">
+            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
               <CardBody className="flex flex-col space-y-3">
                 <h4 className="font-semibold text-lg">Contact Info</h4>
                 <p>
@@ -95,7 +96,7 @@ export default function AboutPage() {
                     /ashishgaurav203
                   </a>
                 </p>
-                <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
+                <div className="mt-4 pt-3 border-t border-white/20 flex items-center">
                   <LocationIcon className="inline-block mr-2 text-primary" />
                   <a
                     className="text-default-500 hover:text-primary transition"
@@ -103,7 +104,7 @@ export default function AboutPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    India, Bihar, Patna
+                    Patna, Bihar, India
                   </a>
                 </div>
               </CardBody>
@@ -112,8 +113,8 @@ export default function AboutPage() {
 
           {/* Experience */}
           <li>
-            <Card className="p-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow h-full">
-              <CardBody className="flex flex-col h-full space-y-6">
+            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
+              <CardBody className="flex flex-col space-y-6">
                 <h4 className="font-semibold text-lg">Experience</h4>
 
                 {/* Current Job */}
@@ -161,21 +162,21 @@ export default function AboutPage() {
 
           {/* Skills */}
           <li>
-            <Card className="p-6 rounded-2xl shadow-md hover:shadow-xl transition-shadow h-full">
+            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
               <CardBody className="flex flex-col h-full">
                 <h4 className="font-semibold text-lg mb-4">Skills</h4>
 
-                <div className="space-y-3 flex-grow">
+                <div className="space-y-4 flex-grow">
                   <div>
                     <span className="font-semibold text-default-600">
-                      Languages:{" "}
+                      Languages:
                     </span>
-                    <div className="flex flex-wrap gap-2 mt-1">
+                    <div className="flex flex-wrap gap-2 mt-2">
                       {["Python", "HTML", "CSS", "JavaScript", "Dart"].map(
                         (lang) => (
                           <span
                             key={lang}
-                            className="px-2 py-1 text-sm bg-default-100 rounded-lg text-default-700"
+                            className="px-3 py-1 text-sm bg-default-100 rounded-lg text-default-700"
                           >
                             {lang}
                           </span>
@@ -185,13 +186,13 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <span className="font-semibold text-default-600">
-                      Frameworks:{" "}
+                      Frameworks:
                     </span>
-                    <div className="flex flex-wrap gap-2 mt-1">
+                    <div className="flex flex-wrap gap-2 mt-2">
                       {["Django", "Flutter", "React", "Next.js"].map((fw) => (
                         <span
                           key={fw}
-                          className="px-2 py-1 text-sm bg-default-100 rounded-lg text-default-700"
+                          className="px-3 py-1 text-sm bg-default-100 rounded-lg text-default-700"
                         >
                           {fw}
                         </span>
@@ -200,8 +201,7 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* Spoken Languages */}
-                <div className="mt-5 pt-3 border-t border-default-200 flex items-center">
+                <div className="mt-5 pt-3 border-t border-white/20 flex items-center">
                   <LanguageIcon className="inline-block mr-2 text-primary" />
                   <span className="text-default-500">English, Hindi</span>
                 </div>
@@ -212,11 +212,11 @@ export default function AboutPage() {
       </div>
 
       {/* Footer Card */}
-      <Card className="p-5 rounded-2xl shadow-md hover:shadow-xl transition-shadow text-center">
+      <Card className="p-6 mt-10 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow text-center bg-white/5 backdrop-blur-xl border border-white/10">
         <CardBody>
-          <h4 className="font-semibold text-lg">Build With:</h4>
-          <p className="text-default-500">Next.js + NextUI</p>
-          <div className="mt-3 flex items-center justify-center border-t border-default-200 pt-3">
+          <h4 className="font-semibold text-lg">Built With:</h4>
+          <p className="text-default-500 mt-1">Next.js + NextUI</p>
+          <div className="mt-4 flex items-center justify-center gap-4 border-t border-white/20 pt-3">
             <a
               href="https://github.com/Fcatilizer/ashish-portfolio"
               target="_blank"
@@ -229,6 +229,6 @@ export default function AboutPage() {
           </div>
         </CardBody>
       </Card>
-    </div>
+    </section>
   );
 }
