@@ -32,9 +32,8 @@ export default function Home() {
             class: "mt-4 text-default-500 leading-relaxed",
           })}
         >
-          Building innovative{" "}
-          <span className="text-primary">Android Apps</span> and{" "}
-          <span className="text-primary">Web Applications</span> with clean,
+          Building innovative <span className="text-primary">Android Apps</span>{" "}
+          and <span className="text-primary">Web Applications</span> with clean,
           scalable solutions.
         </p>
       </div>

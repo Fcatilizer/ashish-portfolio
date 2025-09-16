@@ -16,7 +16,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
+import { EnhancedThemeSwitch } from "@/components/enhanced-theme-switch";
 import {
   TwitterIcon,
   GithubIcon,
@@ -88,31 +88,38 @@ export const Navbar = () => {
             <NavbarMenuToggle className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-all duration-300" />
           </NavbarContent>
 
-          <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
+            <NavbarContent className="flex basis-1/5 sm:basis-full" justify="end">
             <NavbarItem className="flex gap-3">
               <Link
-                isExternal
-                aria-label="LinkedIn"
-                href={siteConfig.links.linkedin}
-                className="p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              isExternal
+              aria-label="LinkedIn"
+              href={siteConfig.links.linkedin}
+              className="p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-110"
               >
-                <LinkedInIcon className="text-default-500 hover:text-blue-400" size={20} />
+              <LinkedInIcon className="text-default-500 hover:text-blue-400" size={20} />
               </Link>
               <Link 
-                isExternal 
-                aria-label="Github" 
-                href={siteConfig.links.github}
-                className="p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              isExternal 
+              aria-label="Github" 
+              href={siteConfig.links.github}
+              className="p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-110"
               >
-                <GithubIcon className="text-default-500 hover:text-default-300" size={20} />
+              <GithubIcon className="text-default-500 hover:text-default-300" size={20} />
               </Link>
-              
-              {/* Enhanced theme switch */}
-              <div className="p-1 rounded-lg hover:bg-white/10 transition-all duration-300">
-                <ThemeSwitch />
+              <Link
+              isExternal
+              aria-label="Twitter"
+              href={siteConfig.links.twitter}
+              className="p-2 rounded-lg hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              >
+              <TwitterIcon className="text-default-500 hover:text-sky-400" size={20} />
+              </Link>
+              {/* Enhanced theme switch with animation */}
+              <div className="flex items-center">
+              <EnhancedThemeSwitch />
               </div>
             </NavbarItem>
-          </NavbarContent>
+            </NavbarContent>
 
           {/* Enhanced mobile menu with frosted glass */}
           <NavbarMenu className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl mt-2 shadow-2xl">

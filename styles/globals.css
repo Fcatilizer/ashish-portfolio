@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this to your globals.css */
+
+/* Smooth theme transitions for all elements */
+* {
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Prevent transitions during initial page load */
+html.loading * {
+  transition: none !important;
+}
+
+/* Enhanced transitions for specific elements */
+body {
+  transition: background-color 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth transitions for backdrop elements */
+[class*="backdrop-blur"] {
+  transition: backdrop-filter 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced transitions for frosted glass elements */
+[class*="bg-white/"] {
+  transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth border transitions */
+[class*="border-white/"] {
+  transition: border-color 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Text color transitions */
+[class*="text-"] {
+  transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shadow transitions */
+[class*="shadow-"] {
+  transition: box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}

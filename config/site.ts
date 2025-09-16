@@ -67,7 +67,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/Fcatilizer",
     linkedin: "https://www.linkedin.com/in/ashish-gaurav03/",
-    twitter: "https://twitter.com/getnextui",
+    twitter: "https://x.com/ashishgaurav203",
     docs: "https://nextui.org",
     discord: "https://discord.gg/9b6yyZKmH4",
     sponsor: "https://patreon.com/jrgarciadev",
