@@ -7,7 +7,7 @@ export default function SocialChips() {
   const socialLinks = [
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/in/yourprofile", // Replace with your LinkedIn
+      href: "https://www.linkedin.com/in/ashish-gaurav03/", // Replace with your LinkedIn
       icon: LinkedInIcon,
       hoverColor: "hover:bg-blue-500/10 hover:border-blue-500/30",
       textColor: "text-blue-400",
@@ -21,7 +21,7 @@ export default function SocialChips() {
     },
     {
       label: "Twitter",
-      href: "https://twitter.com/yourhandle", // Replace with your Twitter
+      href: "https://x.com/ashishgaurav203", // Replace with your Twitter
       icon: TwitterIcon,
       hoverColor: "hover:bg-sky-500/10 hover:border-sky-500/30",
       textColor: "text-sky-400",
