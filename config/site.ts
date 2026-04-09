@@ -56,9 +56,9 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/ashishgaurav",
-    linkedin: "https://linkedin.com/in/ashishgaurav",
-    twitter: "https://twitter.com/ashishgaurav",
+    github: "https://github.com/fcatilizer",
+    linkedin: "https://www.linkedin.com/in/ashish-gaurav03/",
+    twitter: "https://x.com/ashishgaurav203",
     // docs: "https://heroui.com",
     // discord: "https://discord.gg/9b6yyZKmH4",
     // sponsor: "https://patreon.com/jrgarciadev",
