@@ -1,13 +1,13 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@nextui-org/link";
+import { Link } from "@heroui/link";
 import clsx from "clsx";
+
 import { Providers } from "./providers";
+
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
-import BottomNav from "@/components/BottomNav";
-import SocialChips from "@/components/SocialChips";
 
 export const metadata: Metadata = {
   title: {
@@ -37,42 +37,33 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
+          "min-h-screen text-foreground bg-background font-sans antialiased",
+          fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col min-h-screen">
-            {/* Social Chips - Always visible */}
-            <SocialChips />
-            
-            {/* Desktop Navbar - hidden on mobile */}
-            <div className="hidden md:block">
-              <Navbar />
-            </div>
-            
-            {/* Main content with responsive padding */}
-            <main className="container mx-auto max-w-7xl px-6 flex-1 pt-6 md:pt-16 pb-16 md:pb-0 flex flex-col justify-center min-h-0">
-              <div className="w-full">
-                {children}
-              </div>
+        <Providers
+          themeProps={{
+            attribute: "class",
+            defaultTheme: "dark",
+            enableSystem: false,
+          }}
+        >
+          <div className="relative flex flex-col h-screen">
+            <Navbar />
+            <main className="container mx-auto max-w-7xl px-6 flex-grow pt-24 pb-28 md:pb-6">
+              {children}
             </main>
-            
-            {/* Desktop Footer - hidden on mobile */}
-            <footer className="hidden md:flex w-full items-center justify-center py-3 mt-auto">
-              {/* <Link
+            {/* <footer className="w-full flex items-center justify-center py-3">
+              <Link
                 isExternal
                 className="flex items-center gap-1 text-current"
-                href="https://github.com/Fcatilizer/ashish-portfolio"
-                title="Ashish Gaurav Portfolio"
+                href="https://heroui.com?utm_source=next-app-template"
+                title="heroui.com homepage"
               >
-                <span className="text-primary">Ashish Gaurav</span>
-                <p className="text-secondary-500">Portfolio Page</p>
-              </Link> */}
-            </footer>
-            
-            {/* Mobile Bottom Navigation */}
-            <BottomNav />
+                <span className="text-default-600">Powered by</span>
+                <p className="text-primary">HeroUI</p>
+              </Link>
+            </footer> */}
           </div>
         </Providers>
       </body>

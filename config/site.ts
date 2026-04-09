@@ -1,13 +1,8 @@
-import { NavbarItem } from "@nextui-org/navbar";
-import { image } from "@nextui-org/theme";
-import { title } from "process";
-
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Ashish Gaurav",
-  description: "Ashish Gaurav Portfolio.",
-  image: "logo.jpg",
+  description: "Portfolio of Ashish Gaurav",
   navItems: [
     {
       label: "Home",
@@ -18,13 +13,9 @@ export const siteConfig = {
       href: "/projects",
     },
     {
-      label: "Certifications",
+      label: "Certificates",
       href: "/certificates",
     },
-    // {
-    //   label: "Blog",
-    //   href: "/blog",
-    // },
     {
       label: "About",
       href: "/about",
@@ -65,11 +56,11 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/Fcatilizer",
-    linkedin: "https://www.linkedin.com/in/ashish-gaurav03/",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/ashishgaurav",
+    linkedin: "https://linkedin.com/in/ashishgaurav",
+    twitter: "https://twitter.com/ashishgaurav",
+    // docs: "https://heroui.com",
+    // discord: "https://discord.gg/9b6yyZKmH4",
+    // sponsor: "https://patreon.com/jrgarciadev",
   },
 };

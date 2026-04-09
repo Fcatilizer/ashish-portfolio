@@ -1,234 +1,317 @@
 "use client";
 
 import { title } from "@/components/primitives";
-import { Card, CardHeader, CardBody } from "@nextui-org/card";
-import { Image } from "@nextui-org/image";
-import {
-  BreifcaseIcon,
-  GithubIcon,
-  LanguageIcon,
-  LocationIcon,
-  UniversityIcon,
-} from "@/components/icons";
+import { Card, CardBody, CardHeader } from "@heroui/card";
+import { Image } from "@heroui/image";
+import { Link } from "@heroui/link";
+import { Chip } from "@heroui/chip";
+import { GithubIcon } from "@/components/icons";
+
+function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+    >
+      <path
+        d="M8 7V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <rect
+        x="3"
+        y="7"
+        width="18"
+        height="12"
+        rx="2"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M3 12h18"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function LanguageIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+    >
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+      <path
+        d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function LocationIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+    >
+      <path
+        d="M12 21s7-4.8 7-11a7 7 0 1 0-14 0c0 6.2 7 11 7 11Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function UniversityIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+    >
+      <path
+        d="m3 9 9-4 9 4-9 4-9-4Z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M6 11.5V16c0 .8 2.7 2 6 2s6-1.2 6-2v-4.5"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+const languages = ["Python", "HTML", "CSS", "JavaScript", "Dart"];
+const frameworks = ["Django", "Flutter", "React", "Next.js"];
 
 export default function AboutPage() {
   return (
-    <section className="flex flex-col items-center justify-center gap-10 px-6 py-12 md:py-20">
-      <h1 className={`${title()} text-center`}>About Me</h1>
+    <section className="relative w-full px-4 md:px-6 py-10 md:py-16">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-1/2 top-0 -translate-x-1/2 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl" />
+      </div>
 
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-8 w-full max-w-6xl">
-        {/* Profile Card */}
-        <Card className="flex-shrink-0 w-full md:w-80 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow bg-white/5 backdrop-blur-xl border border-white/10">
-          <CardHeader className="flex flex-col items-center text-center pb-0 pt-6">
-            <p className="text-sm uppercase font-bold tracking-wide">
-              Ashish Gaurav
-            </p>
-            <small className="text-default-500">
-              Android App & Web Developer
-            </small>
-            <h4 className="font-semibold text-lg mt-1">B.Tech (Hons.) CSE</h4>
-          </CardHeader>
-          <CardBody className="flex items-center justify-center py-6">
-            <Image
-              alt="Profile"
-              className="object-cover rounded-2xl border shadow-sm"
-              src="me.jpg"
-              width={280}
-            />
-          </CardBody>
-        </Card>
+      <div className="relative mx-auto w-full max-w-6xl">
+        <div className="mb-10 text-center">
+          <h1 className={`${title()} mb-3`}>About Me</h1>
+          <p className="mx-auto max-w-3xl text-default-500 text-base md:text-lg">
+            Android app and web developer focused on practical products, clean
+            interfaces, and business-driven software.
+          </p>
+        </div>
 
-        {/* Info Grid */}
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-          {/* Education */}
-          <li>
-            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
-              <CardBody className="flex flex-col space-y-4">
-                <h4 className="font-semibold text-lg">Education</h4>
-                <p className="text-default-600">
+        <div className="grid grid-cols-1 xl:grid-cols-[320px_1fr] gap-6 md:gap-8 items-start">
+          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
+            <CardHeader className="flex flex-col items-center text-center p-6 pb-3">
+              <p className="text-xs uppercase tracking-[0.18em] text-default-500">
+                Profile
+              </p>
+              <h2 className="mt-2 text-xl font-semibold">Ashish Gaurav</h2>
+              <p className="text-default-500 text-sm mt-1">
+                Android App and Web Developer
+              </p>
+              <Chip size="sm" variant="flat" className="mt-3">
+                B.Tech (Hons.) CSE
+              </Chip>
+            </CardHeader>
+            <CardBody className="pt-2 pb-6 px-6">
+              <Image
+                alt="Profile"
+                src="/me.jpg"
+                className="w-full h-auto rounded-2xl border border-white/10 object-cover"
+              />
+            </CardBody>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg h-full">
+              <CardHeader className="px-6 pt-6 pb-2">
+                <h3 className="text-lg font-semibold">Education</h3>
+              </CardHeader>
+              <CardBody className="px-6 pb-6 pt-2 space-y-4 text-default-600">
+                <p>
                   Pursued{" "}
-                  <a
-                    className="text-primary font-medium hover:underline"
+                  <Link
+                    isExternal
                     href="https://en.wikipedia.org/wiki/Bachelor_of_Technology"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="font-medium"
                   >
                     B.Tech (Hons.) in Computer Science and Engineering
-                  </a>
+                  </Link>
                 </p>
-                <div className="mt-4 pt-3 border-t border-white/20 flex items-center">
-                  <UniversityIcon className="inline-block mr-2 text-primary" />
-                  <a
+                <div className="pt-3 border-t border-white/10 flex items-center gap-2">
+                  <UniversityIcon className="text-primary" />
+                  <Link
+                    isExternal
                     href="https://adamasuniversity.ac.in/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-default-500 hover:text-primary transition"
+                    className="text-default-600 hover:text-primary"
                   >
                     Adamas University
-                  </a>
+                  </Link>
                 </div>
               </CardBody>
             </Card>
-          </li>
 
-          {/* Contact Info */}
-          <li>
-            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
-              <CardBody className="flex flex-col space-y-3">
-                <h4 className="font-semibold text-lg">Contact Info</h4>
+            <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg h-full">
+              <CardHeader className="px-6 pt-6 pb-2">
+                <h3 className="text-lg font-semibold">Contact</h3>
+              </CardHeader>
+              <CardBody className="px-6 pb-6 pt-2 space-y-3 text-default-600">
                 <p>
                   <span className="text-default-500">Email: </span>
-                  <a
-                    className="text-primary font-medium hover:underline"
-                    href="mailto:ashish.gaurav2003@gmail.com"
-                  >
+                  <Link href="mailto:ashish.gaurav2003@gmail.com" className="font-medium">
                     ashish.gaurav2003@gmail.com
-                  </a>
+                  </Link>
                 </p>
                 <p>
                   <span className="text-default-500">X/Twitter: </span>
-                  <a
-                    className="text-primary font-medium hover:underline"
+                  <Link
+                    isExternal
                     href="https://x.com/ashishgaurav203"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="font-medium"
                   >
                     /ashishgaurav203
-                  </a>
+                  </Link>
                 </p>
-                <div className="mt-4 pt-3 border-t border-white/20 flex items-center">
-                  <LocationIcon className="inline-block mr-2 text-primary" />
-                  <a
-                    className="text-default-500 hover:text-primary transition"
+                <div className="pt-3 border-t border-white/10 flex items-center gap-2">
+                  <LocationIcon className="text-primary" />
+                  <Link
+                    isExternal
                     href="https://www.google.com/maps/place/Patna,+Bihar,+India"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    className="text-default-600 hover:text-primary"
                   >
                     Patna, Bihar, India
-                  </a>
+                  </Link>
                 </div>
               </CardBody>
             </Card>
-          </li>
 
-          {/* Experience */}
-          <li>
-            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
-              <CardBody className="flex flex-col space-y-6">
-                <h4 className="font-semibold text-lg">Experience</h4>
-
-                {/* Current Job */}
-                <div className="relative pl-4 border-l-2 border-primary/50 bg-primary/5 rounded-lg p-3">
-                  <p className="font-medium text-base">Python Developer</p>
-                  <span className="text-sm text-default-500">
-                    Aug 2025 – Present
-                  </span>
-                  <div className="mt-2 flex items-center">
-                    <BreifcaseIcon className="inline-block mr-2 text-primary" />
-                    <a
-                      href="https://sukan.eu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary font-medium hover:underline"
-                    >
-                      Sukan Food
-                    </a>
+            <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg h-full md:col-span-2">
+              <CardHeader className="px-6 pt-6 pb-2">
+                <h3 className="text-lg font-semibold">Experience</h3>
+              </CardHeader>
+              <CardBody className="px-6 pb-6 pt-2 space-y-4">
+                <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
+                  <p className="font-medium">Freelancing</p>
+                  <p className="text-sm text-default-500 mt-0.5">Mar 2026 - Present</p>
+                  <div className="mt-2 flex items-center gap-2 text-default-600">
+                    <BriefcaseIcon className="text-primary" />
+                    <span className="font-medium">Independent Projects</span>
                   </div>
                 </div>
 
-                {/* Previous Internship */}
-                <div className="relative pl-4 border-l-2 border-default-200 p-3">
-                  <p className="font-medium text-base">
-                    Frontend Web Development Intern
-                  </p>
-                  <span className="text-sm text-default-500">
-                    Aug 2024 – Nov 2024
-                  </span>
-                  <div className="mt-2 flex items-center">
-                    <BreifcaseIcon className="inline-block mr-2 text-default-500" />
-                    <a
+                <div className="rounded-2xl border border-white/10 p-4">
+                  <p className="font-medium">Python Developer</p>
+                  <p className="text-sm text-default-500 mt-0.5">Aug 2025 - Feb 2026</p>
+                  <div className="mt-2 flex items-center gap-2 text-default-600">
+                    <BriefcaseIcon className="text-default-500" />
+                    <Link isExternal href="https://sukan.eu" className="font-medium">
+                      Sukan Food
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 p-4">
+                  <p className="font-medium">Frontend Web Development Intern</p>
+                  <p className="text-sm text-default-500 mt-0.5">Aug 2024 - Nov 2024</p>
+                  <div className="mt-2 flex items-center gap-2 text-default-600">
+                    <BriefcaseIcon className="text-default-500" />
+                    <Link
+                      isExternal
                       href="https://github.com/Fcatilizer/INSTAKAS/blob/main/Internship%20Letter%20-%20Ashish%20Gaurav.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary font-medium hover:underline"
+                      className="font-medium"
                     >
                       VRAIO Software Solutions Pvt Ltd
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </CardBody>
             </Card>
-          </li>
 
-          {/* Skills */}
-          <li>
-            <Card className="p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow h-full bg-white/5 backdrop-blur-xl border border-white/10">
-              <CardBody className="flex flex-col h-full">
-                <h4 className="font-semibold text-lg mb-4">Skills</h4>
-
-                <div className="space-y-4 flex-grow">
-                  <div>
-                    <span className="font-semibold text-default-600">
-                      Languages:
-                    </span>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {["Python", "HTML", "CSS", "JavaScript", "Dart"].map(
-                        (lang) => (
-                          <span
-                            key={lang}
-                            className="px-3 py-1 text-sm bg-default-100 rounded-lg text-default-700"
-                          >
-                            {lang}
-                          </span>
-                        )
-                      )}
-                    </div>
-                  </div>
-                  <div>
-                    <span className="font-semibold text-default-600">
-                      Frameworks:
-                    </span>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {["Django", "Flutter", "React", "Next.js"].map((fw) => (
-                        <span
-                          key={fw}
-                          className="px-3 py-1 text-sm bg-default-100 rounded-lg text-default-700"
-                        >
-                          {fw}
-                        </span>
-                      ))}
-                    </div>
+            <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg h-full md:col-span-2">
+              <CardHeader className="px-6 pt-6 pb-2">
+                <h3 className="text-lg font-semibold">Skills</h3>
+              </CardHeader>
+              <CardBody className="px-6 pb-6 pt-2 space-y-4">
+                <div>
+                  <p className="text-default-500 mb-2">Languages</p>
+                  <div className="flex flex-wrap gap-2">
+                    {languages.map((lang) => (
+                      <Chip key={lang} size="sm" variant="flat">
+                        {lang}
+                      </Chip>
+                    ))}
                   </div>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-white/20 flex items-center">
-                  <LanguageIcon className="inline-block mr-2 text-primary" />
-                  <span className="text-default-500">English, Hindi</span>
+                <div>
+                  <p className="text-default-500 mb-2">Frameworks</p>
+                  <div className="flex flex-wrap gap-2">
+                    {frameworks.map((framework) => (
+                      <Chip key={framework} size="sm" variant="flat">
+                        {framework}
+                      </Chip>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-white/10 flex items-center gap-2 text-default-600">
+                  <LanguageIcon className="text-primary" />
+                  <span>English, Hindi</span>
                 </div>
               </CardBody>
             </Card>
-          </li>
-        </ul>
-      </div>
-
-      {/* Footer Card */}
-      <Card className="p-6 mt-10 rounded-3xl shadow-lg hover:shadow-2xl transition-shadow text-center bg-white/5 backdrop-blur-xl border border-white/10">
-        <CardBody>
-          <h4 className="font-semibold text-lg">Built With:</h4>
-          <p className="text-default-500 mt-1">Next.js + NextUI</p>
-          <div className="mt-4 flex items-center justify-center gap-4 border-t border-white/20 pt-3">
-            <a
-              href="https://github.com/Fcatilizer/ashish-portfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Github Repository"
-              className="text-primary hover:scale-110 transition-transform"
-            >
-              <GithubIcon className="inline-block w-7 h-7" />
-            </a>
           </div>
-        </CardBody>
-      </Card>
+        </div>
+
+        <Card className="mt-8 rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
+          <CardBody className="px-6 py-6 md:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-semibold">Built With</h3>
+              <p className="text-default-500 mt-1">Next.js + HeroUI</p>
+            </div>
+            <Link
+              isExternal
+              href="https://github.com/Fcatilizer/ashish-portfolio"
+              aria-label="GitHub Repository"
+              className="inline-flex items-center gap-2 text-primary font-medium"
+            >
+              <GithubIcon className="w-5 h-5" />
+              View Repository
+            </Link>
+          </CardBody>
+        </Card>
+      </div>
     </section>
   );
 }

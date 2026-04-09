@@ -1,65 +1,105 @@
-import { Link } from "@nextui-org/link";
-import { Snippet } from "@nextui-org/snippet";
-import { title, subtitle } from "@/components/primitives";
-import { Button } from "@nextui-org/button";
+import { Link } from "@heroui/link";
+import { Button } from "@heroui/button";
+import { Card, CardBody } from "@heroui/card";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-10 py-12 md:py-20 px-4">
-      {/* Profile Intro */}
-      <div className="text-center max-w-2xl">
-        <div className="relative inline-block">
-          <img
-            src="logo.jpg"
-            alt="Ashish Gaurav"
-            className="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-6 border-4 border-white/20 shadow-2xl backdrop-blur-lg"
-          />
-          <span className="absolute bottom-4 right-4 w-4 h-4 bg-green-400 border-2 border-background rounded-full shadow-sm"></span>
-        </div>
-
-        <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">
-          <span className={title()}>I am </span>
-          <span className={title({ color: "violet" })}>Ashish Gaurav</span>
-        </h1>
-
-        <p className="mt-3 text-lg md:text-xl text-default-600 font-medium">
-          A passionate{" "}
-          <span className="text-primary font-semibold">Python Developer</span>
-        </p>
-
-        <p
-          className={subtitle({
-            class: "mt-4 text-default-500 leading-relaxed",
-          })}
-        >
-          Building innovative{" "}
-          <span className="text-primary">Android Apps</span> and{" "}
-          <span className="text-primary">Web Applications</span> with clean,
-          scalable solutions.
-        </p>
+    <section className="relative min-h-[calc(100vh-200px)] py-8 md:py-12">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute top-1/2 right-0 h-44 w-44 rounded-full bg-emerald-500/10 blur-3xl" />
       </div>
 
-      {/* CTA Snippet */}
-      <div className="flex flex-col items-center gap-4">
-        <Snippet
-          hideCopyButton
-          hideSymbol
-          variant="bordered"
-          className="bg-white/5 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-2xl shadow-lg"
-        >
-          <span className="flex items-center gap-2 text-sm text-default-500">
-            Learn more about me
-          </span>
-        </Snippet>
+      <div className="relative mx-auto max-w-6xl flex flex-col gap-8 md:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 items-center">
+          <div className="relative mx-auto lg:mx-0">
+            <div className="w-44 h-44 md:w-52 md:h-52 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-gray-900">
+              <Image
+                src="/logo.jpg"
+                alt="Ashish Gaurav"
+                width={208}
+                height={208}
+                className="object-cover w-full h-full"
+                priority
+              />
+            </div>
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-4 border-black" />
+          </div>
 
-        <Link href="/about">
-          <Button
-            radius="full"
-            className="bg-gradient-to-tr from-blue-500 to-violet-500 text-white shadow-lg shadow-black/20 hover:scale-105 transition-transform"
-          >
-            About Me
-          </Button>
-        </Link>
+          <div className="text-center lg:text-left space-y-4">
+            <p className="text-xs tracking-[0.2em] uppercase text-default-500">
+              Portfolio
+            </p>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+              I build practical digital products for real business workflows.
+            </h1>
+            <p className="text-lg md:text-xl text-default-500">
+              Ashish Gaurav, Python developer focused on Android apps and web
+              applications with clean, scalable architecture.
+            </p>
+
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
+              <Button
+                as={Link}
+                href="/projects"
+                color="primary"
+                size="lg"
+                className="rounded-full px-8"
+              >
+                View Projects
+              </Button>
+              <Button
+                as={Link}
+                href="/about"
+                variant="bordered"
+                size="lg"
+                className="rounded-full px-8"
+              >
+                About Me
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
+            <CardBody className="p-5">
+              <p className="text-xs uppercase tracking-[0.15em] text-default-500">
+                Current Focus
+              </p>
+              <p className="mt-2 text-lg font-semibold">Freelancing</p>
+              <p className="mt-1 text-default-500 text-sm">
+                Building custom business tools and web portals.
+              </p>
+            </CardBody>
+          </Card>
+
+          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
+            <CardBody className="p-5">
+              <p className="text-xs uppercase tracking-[0.15em] text-default-500">
+                Tech Stack
+              </p>
+              <p className="mt-2 text-lg font-semibold">Python, Django, Next.js</p>
+              <p className="mt-1 text-default-500 text-sm">
+                Practical full-stack delivery from backend to polished UI.
+              </p>
+            </CardBody>
+          </Card>
+
+          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
+            <CardBody className="p-5">
+              <p className="text-xs uppercase tracking-[0.15em] text-default-500">
+                Explore
+              </p>
+              <div className="mt-2 flex flex-wrap gap-3 text-sm font-medium">
+                <Link href="/projects">Projects</Link>
+                <Link href="/certificates">Certificates</Link>
+                <Link href="/about">About</Link>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
       </div>
     </section>
   );
