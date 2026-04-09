@@ -16,7 +16,7 @@ export default function Home() {
           <div className="relative mx-auto lg:mx-0">
             <div className="w-44 h-44 md:w-52 md:h-52 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-gray-900">
               <Image
-                src="/logo.jpg"
+                src="/me.jpg"
                 alt="Ashish Gaurav"
                 width={208}
                 height={208}
