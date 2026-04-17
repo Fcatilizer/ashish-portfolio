@@ -3,6 +3,7 @@ import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import Image from "next/image";
 import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
+import { DbStatusDot } from "@/components/db-status-dot";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
                 priority
               />
             </div>
-            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-4 border-black" />
+            <DbStatusDot />
           </div>
 
           <div className="text-center lg:text-left space-y-4">
