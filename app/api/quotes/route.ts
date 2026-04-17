@@ -7,12 +7,17 @@ export const runtime = "nodejs";
 const DB_TIMEOUT_MS = 8500;
 
 function withTimeout<T>(promise: Promise<T>, timeoutMs: number, errorMessage: string) {
-    return Promise.race<T>([
-        promise,
-        new Promise<T>((_, reject) => {
-            setTimeout(() => reject(new Error(errorMessage)), timeoutMs);
-        }),
-    ]);
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    const timeoutPromise = new Promise<T>((_, reject) => {
+        timeoutId = setTimeout(() => reject(new Error(errorMessage)), timeoutMs);
+    });
+
+    return Promise.race<T>([promise, timeoutPromise]).finally(() => {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+    });
 }
 
 function validateQuotePayload(payload: unknown) {
