@@ -2,6 +2,7 @@ import { Link } from "@heroui/link";
 import { Button } from "@heroui/button";
 import { Card, CardBody } from "@heroui/card";
 import Image from "next/image";
+import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
 
 export default function Home() {
   return (
@@ -58,6 +59,7 @@ export default function Home() {
               >
                 About Me
               </Button>
+              <QuoteModalTrigger />
             </div>
           </div>
         </div>

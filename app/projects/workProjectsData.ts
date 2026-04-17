@@ -63,4 +63,56 @@ This application is intended strictly for business use and serves as a digital b
     link: "https://play.google.com",
     linkLabel: "Learn More",
   },
+  {
+    name: "Edu Nova",
+    desc: "An Education Platform Management Software for Admins and Teachers.",
+    detailedDesc: `Edu Nova is an education platform management software designed for Admins and Teachers.
+
+It allows Admins and Teachers to manage:
+- Class Packages
+- Offline Book Purchase
+- Teaching and Learning Material
+- Session Management
+- Quiz and Tests
+- Faculty Team Listings
+- Payment and Revenue Dashboard
+- Other day-to-day education workflow operations`,
+    images: ["EDUNOVA1.png", "EDUNOVA2.png"],
+    technologies: ["Django", "SQLite"],
+    storeLinks: [
+      {
+        label: "Website",
+        url: "https://edunova0608.in/",
+      },
+    ],
+    link: "https://edunova0608.in/",
+    linkLabel: "Learn More",
+  },
+  {
+    name: "EDU NOVA - Mobile",
+    desc: "Android and iOS application for Students.",
+    detailedDesc: `EDU NOVA - Mobile is an Android and iOS application focused on student learning journeys.
+
+Through this app, students can:
+- Sign Up and Sign In
+- Purchase class packages
+- Watch and learn through learning materials
+- Take quizzes and tests
+- Buy physical books`,
+    images: ["/Screenshots/EN1.png", "/Screenshots/EN2.png", "/Screenshots/EN6.png", "/Screenshots/EN7.png"],
+    imageMode: "portrait",
+    technologies: ["Android", "iOS"],
+    storeLinks: [
+      {
+        label: "Apple App Store (TBA)",
+        url: "#",
+      },
+      {
+        label: "Google Play Store (TBA)",
+        url: "#",
+      },
+    ],
+    link: "https://edunova0608.in/",
+    linkLabel: "Learn More",
+  },
 ];
