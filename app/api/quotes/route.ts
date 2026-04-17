@@ -97,22 +97,20 @@ export async function POST(request: Request) {
         };
 
         await withTimeout(
-            connectToDatabase(),
-            DB_TIMEOUT_MS,
-            "Database connection timed out"
-        );
+            (async () => {
+                await connectToDatabase();
 
-        await withTimeout(
-            Quote.create({
-                fullName: fullName.trim(),
-                email: email.trim(),
-                projectType,
-                budget: budget ?? "",
-                details: details.trim(),
-                consent,
-            }),
+                await Quote.create({
+                    fullName: fullName.trim(),
+                    email: email.trim(),
+                    projectType,
+                    budget: budget ?? "",
+                    details: details.trim(),
+                    consent,
+                });
+            })(),
             DB_TIMEOUT_MS,
-            "Database write timed out"
+            "Database operation timed out"
         );
 
         return NextResponse.json(
