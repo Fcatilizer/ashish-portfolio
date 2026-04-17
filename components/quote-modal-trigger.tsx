@@ -162,14 +162,26 @@ export function QuoteModalTrigger() {
                     value={projectType}
                     onChange={(event) => setProjectType(event.target.value)}
                     required
-                    className="w-full rounded-xl border border-default-200 bg-transparent px-3 py-2 outline-none transition focus:border-primary"
+                    className="w-full rounded-xl border border-default-200 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 outline-none transition focus:border-primary"
                   >
-                    <option value="">Select type</option>
-                    <option value="android-app">Android app</option>
-                    <option value="ios-app">iOS app</option>
-                    <option value="web-app">Web app</option>
-                    <option value="dashboard">Admin dashboard</option>
-                    <option value="other">Other</option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="">
+                      Select type
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="android-app">
+                      Android app
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="ios-app">
+                      iOS app
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="web-app">
+                      Web app
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="dashboard">
+                      Admin dashboard
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="other">
+                      Other
+                    </option>
                   </select>
                 </label>
 
@@ -178,13 +190,23 @@ export function QuoteModalTrigger() {
                   <select
                     value={budget}
                     onChange={(event) => setBudget(event.target.value)}
-                    className="w-full rounded-xl border border-default-200 bg-transparent px-3 py-2 outline-none transition focus:border-primary"
+                    className="w-full rounded-xl border border-default-200 bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100 px-3 py-2 outline-none transition focus:border-primary"
                   >
-                    <option value="">Select budget</option>
-                    <option value="under-50k">Under INR 50,000</option>
-                    <option value="50k-2l">INR 50,000 - 2,00,000</option>
-                    <option value="2l-10l">INR 2,00,000 - 10,00,000</option>
-                    <option value="above-10l">Above INR 10,00,000</option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="">
+                      Select budget
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="under-50k">
+                      Under INR 50,000
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="50k-2l">
+                      INR 50,000 - 2,00,000
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="2l-10l">
+                      INR 2,00,000 - 10,00,000
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="above-10l">
+                      Above INR 10,00,000
+                    </option>
                   </select>
                 </label>
               </div>
