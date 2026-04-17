@@ -4,6 +4,17 @@ import { Quote } from "@/lib/models/Quote";
 
 export const runtime = "nodejs";
 
+const DB_TIMEOUT_MS = 8500;
+
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number, errorMessage: string) {
+    return Promise.race<T>([
+        promise,
+        new Promise<T>((_, reject) => {
+            setTimeout(() => reject(new Error(errorMessage)), timeoutMs);
+        }),
+    ]);
+}
+
 function validateQuotePayload(payload: unknown) {
     if (!payload || typeof payload !== "object") {
         return "Invalid request payload.";
@@ -85,16 +96,24 @@ export async function POST(request: Request) {
             consent: boolean;
         };
 
-        await connectToDatabase();
+        await withTimeout(
+            connectToDatabase(),
+            DB_TIMEOUT_MS,
+            "Database connection timed out"
+        );
 
-        await Quote.create({
-            fullName: fullName.trim(),
-            email: email.trim(),
-            projectType,
-            budget: budget ?? "",
-            details: details.trim(),
-            consent,
-        });
+        await withTimeout(
+            Quote.create({
+                fullName: fullName.trim(),
+                email: email.trim(),
+                projectType,
+                budget: budget ?? "",
+                details: details.trim(),
+                consent,
+            }),
+            DB_TIMEOUT_MS,
+            "Database write timed out"
+        );
 
         return NextResponse.json(
             { message: "Quote submitted successfully." },
@@ -102,6 +121,13 @@ export async function POST(request: Request) {
         );
     } catch (error) {
         console.error("Quote submission failed", error);
+
+        if (error instanceof Error && error.message.toLowerCase().includes("timed out")) {
+            return NextResponse.json(
+                { error: "Database is taking too long to respond. Please try again." },
+                { status: 504 }
+            );
+        }
 
         return NextResponse.json(
             { error: "Unable to submit quote right now. Please try again." },

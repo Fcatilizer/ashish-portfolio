@@ -32,10 +32,19 @@ export async function connectToDatabase() {
         cached.promise = mongoose.connect(mongoUri, {
             dbName,
             bufferCommands: false,
+            serverSelectionTimeoutMS: 5000,
+            connectTimeoutMS: 5000,
+            socketTimeoutMS: 8000,
+            family: 4,
         });
     }
 
-    cached.conn = await cached.promise;
+    try {
+        cached.conn = await cached.promise;
+    } catch (error) {
+        cached.promise = null;
+        throw error;
+    }
 
     return cached.conn;
 }
