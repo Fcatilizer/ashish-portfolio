@@ -196,16 +196,19 @@ export function QuoteModalTrigger() {
                       Select budget
                     </option>
                     <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="under-50k">
-                      Under INR 50,000
+                      Under ₹50,000
                     </option>
                     <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="50k-2l">
-                      INR 50,000 - 2,00,000
+                      ₹50,000 – ₹2,00,000
                     </option>
                     <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="2l-10l">
-                      INR 2,00,000 - 10,00,000
+                      ₹2,00,000 – ₹10,00,000
                     </option>
                     <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="above-10l">
-                      Above INR 10,00,000
+                      Above ₹10,00,000
+                    </option>
+                    <option className="bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100" value="not-sure">
+                      Not sure yet
                     </option>
                   </select>
                 </label>
