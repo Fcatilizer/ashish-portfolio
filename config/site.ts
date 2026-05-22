@@ -2,7 +2,29 @@ export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
   name: "Ashish Gaurav",
-  description: "Portfolio of Ashish Gaurav",
+  description:
+    "Ashish Gaurav — Full-Stack Developer & Freelancer building custom mobile apps (Android & iOS) and web applications. Get a free quote for your project today.",
+  url: "https://www.ashish-gaurav.com",
+  ogImage: "https://www.ashish-gaurav.com/og-image.png",
+  keywords: [
+    "Ashish Gaurav",
+    "Ashish Gaurav developer",
+    "Ashish Gaurav portfolio",
+    "freelance developer India",
+    "custom mobile app development",
+    "custom web application",
+    "Android app developer",
+    "iOS app developer",
+    "full stack developer",
+    "Django developer",
+    "Next.js developer",
+    "Python developer",
+    "freelancer Patna Bihar",
+    "hire app developer India",
+    "get a quote developer",
+    "custom business software",
+    "web portal development",
+  ],
   navItems: [
     {
       label: "Home",
@@ -23,36 +45,20 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Home",
+      href: "/",
     },
     {
       label: "Projects",
       href: "/projects",
     },
     {
-      label: "Team",
-      href: "/team",
+      label: "Certificates",
+      href: "/certificates",
     },
     {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
+      label: "About",
+      href: "/about",
     },
   ],
   links: {
