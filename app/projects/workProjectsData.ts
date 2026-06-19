@@ -63,6 +63,9 @@ This application is intended strictly for business use and serves as a digital b
     link: "https://play.google.com",
     linkLabel: "Learn More",
   },
+];
+
+export const freelanceProjectsData = [
   {
     name: "Edu Nova",
     desc: "An Education Platform Management Software for Admins and Teachers.",
@@ -104,12 +107,12 @@ Through this app, students can:
     technologies: ["Android", "iOS"],
     storeLinks: [
       {
-        label: "Apple App Store (TBA)",
-        url: "#",
+        label: "Apple App Store",
+        url: "https://apps.apple.com/in/app/edu-nova-edu/id6779919602",
       },
       {
-        label: "Google Play Store (TBA)",
-        url: "#",
+        label: "Google Play Store",
+        url: "https://play.google.com/store/apps/details?id=com.edu.nova&hl=en_IN",
       },
     ],
     link: "https://edunova0608.in/",

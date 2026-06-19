@@ -6,7 +6,7 @@ import { Card, CardBody } from "@heroui/card";
 import { Image } from "@heroui/image";
 import { useState, useEffect } from "react";
 import { ProjectModal } from "@/components/project-modal";
-import { workProjectsData } from "./workProjectsData";
+import { workProjectsData, freelanceProjectsData } from "./workProjectsData";
 
 function FadingImageSlider({ images, alt }: { images: string[]; alt: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -261,9 +261,72 @@ export default function ProjectsPage() {
       ),
   }));
 
+  const freelanceProjects = freelanceProjectsData.map((proj) => ({
+    ...proj,
+    icon:
+      proj.linkLabel === "Learn More" ? (
+        <OpenFolderIcon className="w-5 h-5 mr-2 text-primary" />
+      ) : (
+        <PlayStoreIcon className="w-5 h-5 mr-2 text-primary" />
+      ),
+  }));
+
   return (
     <section className="flex flex-col items-center justify-center py-12 md:py-20 px-6">
-      <h1 className={`${title()} text-center mb-12`}>Work Projects</h1>
+      {/* Freelance Projects Section */}
+      <h1 className={`${title()} text-center mb-12`}>Freelance Projects</h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+        {freelanceProjects.map((proj) => (
+          <Card
+            key={proj.name}
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+          >
+            <CardBody className="p-6">
+              <div className="flex flex-col h-full">
+                {/* Project Info */}
+                <div className="mb-4">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                    {proj.name}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">
+                    {proj.desc}
+                  </p>
+                </div>
+
+                {/* Preview Image */}
+                <div className="flex-1 flex justify-center items-center rounded-xl overflow-hidden mb-4">
+                  {proj.images && proj.images.length > 1 ? (
+                    proj.imageMode === "portrait" ? (
+                      <PreviewCarousel images={proj.images} alt={proj.name} />
+                    ) : (
+                      <FadingImageSlider images={proj.images} alt={proj.name} />
+                    )
+                  ) : (
+                    <Image
+                      alt={proj.name}
+                      src={proj.images[0]}
+                      className="object-contain max-h-64 w-auto transition-transform duration-300 group-hover:scale-105"
+                    />
+                  )}
+                </div>
+
+                {/* Link */}
+                <button
+                  onClick={() => handleLearnMore(proj)}
+                  className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline transition-colors cursor-pointer bg-transparent border-none p-0"
+                >
+                  {proj.icon}
+                  {proj.linkLabel}
+                </button>
+              </div>
+            </CardBody>
+          </Card>
+        ))}
+      </div>
+
+      {/* Work Projects Section */}
+      <h2 className={`${title()} text-center mb-12 mt-20`}>Work Projects</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
         {workProjects.map((proj) => (
