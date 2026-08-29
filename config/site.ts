@@ -61,10 +61,12 @@ export const siteConfig = {
       href: "/about",
     },
   ],
+  resumeUrl: "/api/resume",
   links: {
     github: "https://github.com/fcatilizer",
     linkedin: "https://www.linkedin.com/in/ashish-gaurav03/",
     twitter: "https://x.com/ashishgaurav203",
+    resume: "/api/resume",
     // docs: "https://heroui.com",
     // discord: "https://discord.gg/9b6yyZKmH4",
     // sponsor: "https://patreon.com/jrgarciadev",
