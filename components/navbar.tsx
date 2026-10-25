@@ -1,6 +1,5 @@
 "use client";
 
-import { Link } from "@heroui/link";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -8,6 +7,8 @@ import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, LinkedInIcon } from "@/components/icons";
+
+import styles from "./navbar.module.css";
 
 function navIcon(label: string) {
   switch (label) {
@@ -42,32 +43,24 @@ function navIcon(label: string) {
 
 export const Navbar = () => {
   const pathname = usePathname();
+  const isCurrentPage = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href + "/"));
 
   return (
     <>
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-      <div className="backdrop-blur-xl bg-white/70 dark:bg-black/40 border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Brand */}
-          <NextLink
-            href="/"
-            className="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
-          >
+      <header className={styles.header}>
+        <a className={styles.skipLink} href="#main-content">Skip to content</a>
+        <nav aria-label="Primary navigation" className={styles.bar}>
+          <NextLink aria-label={siteConfig.name + " — Home"} className={styles.brand} href="/">
             {siteConfig.name}
           </NextLink>
 
-          {/* Navigation Links - Center */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className={styles.desktopLinks}>
             {siteConfig.navItems.map((item) => (
               <li key={item.href}>
                 <NextLink
+                  aria-current={isCurrentPage(item.href) ? "page" : undefined}
+                  className={clsx(styles.pageLink, isCurrentPage(item.href) && styles.activeLink)}
                   href={item.href}
-                  className={clsx(
-                    "text-sm font-medium transition-colors dark:hover:text-white hover:text-gray-900",
-                    pathname === item.href
-                      ? "text-gray-900 dark:text-white"
-                      : "text-gray-600 dark:text-gray-300"
-                  )}
                 >
                   {item.label}
                 </NextLink>
@@ -75,52 +68,41 @@ export const Navbar = () => {
             ))}
           </ul>
 
-          {/* Icons - Right */}
-          <div className="flex items-center gap-4">
-            <Link
-              isExternal
-              aria-label="LinkedIn"
-              href={siteConfig.links.linkedin}
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              <LinkedInIcon size={20} />
-            </Link>
-            <Link
-              isExternal
-              aria-label="Github"
-              href={siteConfig.links.github}
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-            >
-              <GithubIcon size={20} />
-            </Link>
-            <ThemeSwitch />
+          <div className={styles.actions}>
+            <a className={styles.resumeLink} href={siteConfig.resumeUrl} rel="noopener noreferrer" target="_blank">
+              Résumé
+              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" /></svg>
+            </a>
+            <div className={styles.socialLinks}>
+              <a aria-label="LinkedIn" className={styles.iconLink} href={siteConfig.links.linkedin} rel="noopener noreferrer" target="_blank" title="LinkedIn">
+                <LinkedInIcon aria-hidden="true" focusable="false" size={17} />
+              </a>
+              <a aria-label="GitHub" className={styles.iconLink} href={siteConfig.links.github} rel="noopener noreferrer" target="_blank" title="GitHub">
+                <GithubIcon aria-hidden="true" focusable="false" size={17} />
+              </a>
+            </div>
+            <div className={styles.themeControl}>
+              <ThemeSwitch className={styles.themeSwitch} classNames={{ wrapper: styles.themeIcon }} />
+            </div>
           </div>
-        </div>
-      </div>
-      </nav>
+        </nav>
+      </header>
 
-      <nav className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-md">
-        <div className="grid grid-cols-4 gap-1 rounded-2xl border border-gray-200/70 dark:border-white/10 bg-white/80 dark:bg-black/60 backdrop-blur-2xl shadow-2xl p-2">
-          {siteConfig.navItems.map((item) => {
-            const isActive = pathname === item.href;
-
-            return (
+      <nav aria-label="Mobile navigation" className={styles.mobileNav}>
+        <ul className={styles.mobileLinks}>
+          {siteConfig.navItems.map((item) => (
+            <li key={item.href}>
               <NextLink
-                key={item.href}
+                aria-current={isCurrentPage(item.href) ? "page" : undefined}
+                className={clsx(styles.mobileLink, isCurrentPage(item.href) && styles.activeLink)}
                 href={item.href}
-                className={clsx(
-                  "flex flex-col items-center justify-center rounded-xl py-2 transition-colors",
-                  isActive
-                    ? "text-gray-900 dark:text-white bg-black/5 dark:bg-white/10"
-                    : "text-gray-600 dark:text-gray-300"
-                )}
               >
-                <span>{navIcon(item.label)}</span>
-                <span className="mt-1 text-[11px] leading-none font-medium">{item.label}</span>
+                {navIcon(item.label)}
+                <span>{item.label}</span>
               </NextLink>
-            );
-          })}
-        </div>
+            </li>
+          ))}
+        </ul>
       </nav>
     </>
   );
