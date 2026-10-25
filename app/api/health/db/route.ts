@@ -24,7 +24,12 @@ export async function GET() {
 
     try {
         await withTimeout(
-            connectToDatabase(),
+            (async () => {
+                const mongoose = await connectToDatabase();
+                const database = mongoose.connection.db;
+                if (!database) throw new Error("Database connection is unavailable.");
+                await database.command({ ping: 1 });
+            })(),
             HEALTH_TIMEOUT_MS,
             "Database health check timed out"
         );

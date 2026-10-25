@@ -1,0 +1,30 @@
+.container { position: relative; display: inline-flex; width: fit-content; }
+.container > a { -webkit-touch-callout: none; user-select: none; touch-action: manipulation; }
+.tooltip {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: -5px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  width: 222px;
+  max-width: calc(100vw - 48px);
+  padding: 16px 18px;
+  border: 1px solid var(--n-border);
+  border-radius: 9px;
+  background: var(--n-surface);
+  color: var(--n-text);
+  box-shadow: 0 8px 28px #00000010;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.eyebrow { color: var(--n-muted); font-size: 8px; font-weight: 500; letter-spacing: .13em; line-height: 1.5; }
+.status { font-size: 14px; line-height: 1.4; font-weight: 500; letter-spacing: -.02em; }
+.status[data-status="checking"] { color: var(--n-muted); }
+.status[data-status="connected"] { color: #268354; }
+.status[data-status="disconnected"], .status[data-status="unavailable"] { color: #a26a23; }
+.hint { font-size: 9px; line-height: 1.5; color: var(--n-muted); }
+:global(.dark) .status[data-status="connected"] { color: #88cda6; }
+:global(.dark) .status[data-status="disconnected"], :global(.dark) .status[data-status="unavailable"] { color: #e0b16f; }

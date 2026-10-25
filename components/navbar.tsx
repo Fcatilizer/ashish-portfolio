@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, LinkedInIcon } from "@/components/icons";
+import { DbStatusBrand } from "@/components/db-status-brand";
 
 import styles from "./navbar.module.css";
 
@@ -50,9 +51,7 @@ export const Navbar = () => {
       <header className={styles.header}>
         <a className={styles.skipLink} href="#main-content">Skip to content</a>
         <nav aria-label="Primary navigation" className={styles.bar}>
-          <NextLink aria-label={siteConfig.name + " — Home"} className={styles.brand} href="/">
-            {siteConfig.name}
-          </NextLink>
+          <DbStatusBrand className={styles.brand} />
 
           <ul className={styles.desktopLinks}>
             {siteConfig.navItems.map((item) => (
