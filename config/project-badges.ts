@@ -54,6 +54,13 @@ export const projectBadges = {
     light: { text: "#5b4c92", background: "#f2effa", border: "#ddd5ef" },
     dark: { text: "#c6b8ee", background: "#272036", border: "#45395d" },
   },
+  ongoing: {
+    label: "Ongoing",
+    description: "An active chapter alongside my other work.",
+    icon: "dot",
+    light: { text: "#236345", background: "#edf7f0", border: "#cce5d4" },
+    dark: { text: "#a1d9b7", background: "#162820", border: "#2c4838" },
+  },
   "connected-products": {
     label: "{count} connected products",
     singularLabel: "{count} connected product",
