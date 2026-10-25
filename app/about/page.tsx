@@ -8,6 +8,7 @@ import { Link } from "@heroui/link";
 import { Chip } from "@heroui/chip";
 import { GithubIcon } from "@/components/icons";
 import { siteConfig } from "@/config/site";
+import { currentCompany } from "@/app/projects/workProjectsData";
 
 function BriefcaseIcon({ className }: { className?: string }) {
   return (
@@ -249,6 +250,17 @@ export default function AboutPage() {
                 <h3 className="text-lg font-semibold">Experience</h3>
               </CardHeader>
               <CardBody className="px-6 pb-6 pt-2 space-y-4">
+                {currentCompany?.role && (
+                  <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
+                    <p className="font-medium">{currentCompany.role}</p>
+                    <p className="text-sm text-default-500 mt-0.5">Current</p>
+                    <div className="mt-2 flex items-center gap-2 text-default-600">
+                      <BriefcaseIcon className="text-primary" />
+                      <Link href={"/projects#" + currentCompany.id} className="font-medium">{currentCompany.name}</Link>
+                    </div>
+                    <p className="mt-3 text-sm text-default-500 leading-relaxed">{currentCompany.roleDescription}</p>
+                  </div>
+                )}
                 <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
                   <p className="font-medium">Freelancing</p>
                   <p className="text-sm text-default-500 mt-0.5">Mar 2026 - Present</p>

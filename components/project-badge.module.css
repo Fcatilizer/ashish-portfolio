@@ -1,0 +1,43 @@
+/* Shared presentation for every project badge. Content and colors are in config/project-badges.ts. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--status-light-border);
+  border-radius: 5px;
+  background: var(--status-light-bg);
+  color: var(--status-light-text);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.badge svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+:global(.dark) .badge:not([data-appearance="cover"]) {
+  border-color: var(--status-dark-border);
+  background: var(--status-dark-bg);
+  color: var(--status-dark-text);
+}

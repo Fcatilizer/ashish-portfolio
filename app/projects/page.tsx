@@ -1,436 +1,242 @@
 "use client";
 
-import { GithubIcon, PlayStoreIcon, OpenFolderIcon } from "@/components/icons";
-import { title } from "@/components/primitives";
-import { Card, CardBody } from "@heroui/card";
-import { Image } from "@heroui/image";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { ProjectCover } from "@/components/project-cover";
 import { ProjectModal } from "@/components/project-modal";
-import { workProjectsData, freelanceProjectsData } from "./workProjectsData";
+import { ProjectBadge } from "@/components/project-badge";
+import { getProjectBadge } from "@/config/project-badges";
 
-function FadingImageSlider({ images, alt }: { images: string[]; alt: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+import {
+  personalProjects,
+  projectGroups,
+  currentCompany,
+  type PersonalProject,
+  type ProjectCategory,
+  type ProjectGroup,
+} from "./workProjectsData";
+import "./projects.css";
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
+type Filter = "All" | ProjectCategory;
 
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
+function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return (
-    <div className="relative w-full h-[240px] rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-700">
-      <div
-        className="flex h-full transition-transform duration-500 ease-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {images.map((img, index) => (
-          <div key={index} className="w-full h-full shrink-0">
-            <img
-              src={img}
-              alt={`${alt} ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={prevImage}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full p-1.5 transition-colors shadow"
-            aria-label="Previous preview image"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <button
-            onClick={nextImage}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full p-1.5 transition-colors shadow"
-            aria-label="Next preview image"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === currentIndex
-                    ? "bg-white w-5"
-                    : "bg-white/50 w-1.5"
-                }`}
-                aria-label={`Go to preview image ${index + 1}`}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+      <path
+        d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h15m-6-6 6 6-6 6"}
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+      />
+    </svg>
   );
 }
 
-function PreviewCarousel({
-  images,
-  alt,
+function ProjectCard({
+  project,
+  index,
+  onOpen,
 }: {
-  images: string[];
-  alt: string;
+  project: ProjectGroup | PersonalProject;
+  index: number;
+  onOpen: (project: ProjectGroup) => void;
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  const isPersonal = project.category === "Personal";
+  const label = isPersonal ? project.linkLabel : "Explore";
+  const productCount = isPersonal ? 0 : project.products.length;
 
   return (
-    <div className="relative w-full h-[320px] flex items-center justify-center" style={{ overflow: "clip" }}>
-      {images.map((img, index) => {
-        const offset = index - currentIndex;
-        const isActive = index === currentIndex;
-
-        if (Math.abs(offset) > 1) return null;
-
-        return (
-          <div
-            key={index}
-            className="absolute transition-all duration-500 ease-out"
-            style={{
-              transform: `translateX(${offset * 145}px) scale(${isActive ? 1 : 0.86})`,
-              opacity: isActive ? 1 : 0.35,
-              zIndex: isActive ? 20 : 10,
-            }}
-          >
-            <div className="w-[138px] h-[300px] rounded-3xl overflow-hidden bg-gray-200 dark:bg-gray-700 shadow-xl">
-              <img
-                src={img}
-                alt={`${alt} ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
+    <a
+      aria-haspopup={isPersonal ? undefined : "dialog"}
+      aria-label={(isPersonal ? label + " — " + project.name : "Explore " + project.name) + (productCount ? ", " + getProjectBadge("connected-products", productCount).label : "") + (project.status ? ", " + getProjectBadge(project.status).label : "") + (!isPersonal && project.role ? ", " + project.role : "")}
+      className="work-card"
+      href={isPersonal ? project.link : "#" + project.id}
+      rel={isPersonal ? "noopener noreferrer" : undefined}
+      target={isPersonal ? "_blank" : undefined}
+      onClick={(event) => {
+        if (project.category === "Personal" || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        onOpen(project);
+      }}
+    >
+      <div className="work-card-art">
+        {isPersonal ? <ProjectCover image={project.image} /> : <ProjectCover composition={project.cover} visual={project.visual} />}
+        <div className="work-card-art-top">
+          {project.status ? (
+            <ProjectBadge appearance="cover" badge={project.status} />
+          ) : (
+            <ProjectBadge appearance="cover" badge="connected-products" count={productCount} />
+          )}
+          <span className="card-open-icon"><Arrow diagonal /></span>
+        </div>
+      </div>
+      <div className="work-card-content">
+        <div className="work-card-meta">
+          <span>{project.category} <span className="meta-divider">/</span> {project.field}</span>
+          <span className="project-index">{String(index + 1).padStart(2, "0")}</span>
+        </div>
+        <h3>{project.name}</h3>
+        {!isPersonal && project.role && <span className="work-card-role">{project.role}</span>}
+        <p>{project.summary}</p>
+        <div className="work-card-bottom">
+          <div className="project-tags">
+            {project.areas.map((area) => <span key={area}>{area}</span>)}
           </div>
-        );
-      })}
-
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={prevImage}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full p-2 transition-colors shadow-lg"
-            aria-label="Previous preview image"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-
-          <button
-            onClick={nextImage}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/90 dark:bg-gray-800/90 hover:bg-white dark:hover:bg-gray-700 text-gray-800 dark:text-white rounded-full p-2 transition-colors shadow-lg"
-            aria-label="Next preview image"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`h-1.5 rounded-full transition-all ${
-                  index === currentIndex
-                    ? "bg-blue-500 w-6"
-                    : "bg-gray-400 dark:bg-gray-600 w-1.5"
-                }`}
-                aria-label={`Go to preview image ${index + 1}`}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+          <span className="card-explore"><span>{label}</span><Arrow diagonal={isPersonal} /></span>
+        </div>
+      </div>
+    </a>
   );
 }
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filter, setFilter] = useState<Filter>("All");
+  const [selectedProject, setSelectedProject] = useState<ProjectGroup | null>(null);
 
-  const handleLearnMore = (project: any) => {
+  useEffect(() => {
+    const syncProjectWithUrl = () => {
+      const id = window.location.hash.slice(1);
+      setSelectedProject(projectGroups.find((project) => project.id === id) || null);
+    };
+
+    syncProjectWithUrl();
+    window.addEventListener("hashchange", syncProjectWithUrl);
+    window.addEventListener("popstate", syncProjectWithUrl);
+
+    return () => {
+      window.removeEventListener("hashchange", syncProjectWithUrl);
+      window.removeEventListener("popstate", syncProjectWithUrl);
+    };
+  }, []);
+
+  const openProject = (project: ProjectGroup) => {
+    window.history.pushState(null, "", "#" + project.id);
     setSelectedProject(project);
-    setIsModalOpen(true);
   };
 
-  const projects = [
-    {
-      name: "Eye Care",
-      desc: "Keep records of Eye prescriptions in the cloud and access them from anywhere at any time.",
-      icon: <PlayStoreIcon className="w-5 h-5 mr-2 text-primary" />,
-      link: "https://play.google.com/store/apps/details?id=com.a3.eyecare",
-      linkLabel: "Get On Play Store",
-      image:
-        "https://www.a3group.co.in/_next/image?url=%2Feye-care%2Fimages%2Fcover.png&w=640&q=75",
-    },
-    {
-      name: "Library Management",
-      desc: "Library Books Management App with Student & Teacher login. Features easy book search, assign, and add options.",
-      icon: <GithubIcon className="w-5 h-5 mr-2 text-primary" />,
-      link: "https://github.com/Fcatilizer/Library_Management",
-      linkLabel: "Get On GitHub",
-      image: "/ic_launcher.png",
-    },
+  const closeProject = () => {
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    setSelectedProject(null);
+  };
+
+  const filters: { label: Filter; text: string; count: number }[] = [
+    { label: "All", text: "All work", count: projectGroups.length + personalProjects.length },
+    { label: "Freelance", text: "Freelance", count: projectGroups.filter((project) => project.category === "Freelance").length },
+    { label: "Work", text: "At work", count: projectGroups.filter((project) => project.category === "Work").length },
+    { label: "Personal", text: "Personal", count: personalProjects.length },
   ];
 
-  const workProjects = workProjectsData.map((proj) => ({
-    ...proj,
-    icon:
-      proj.linkLabel === "Learn More" ? (
-        <OpenFolderIcon className="w-5 h-5 mr-2 text-primary" />
-      ) : (
-        <PlayStoreIcon className="w-5 h-5 mr-2 text-primary" />
-      ),
-  }));
-
-  const freelanceProjects = freelanceProjectsData.map((proj) => ({
-    ...proj,
-    icon:
-      proj.linkLabel === "Learn More" ? (
-        <OpenFolderIcon className="w-5 h-5 mr-2 text-primary" />
-      ) : (
-        <PlayStoreIcon className="w-5 h-5 mr-2 text-primary" />
-      ),
-  }));
+  const visibleProjects = projectGroups
+    .filter((project) => filter === "All" || project.category === filter)
+    .sort((a, b) => filter === "Work" ? Number(b.status === "current") - Number(a.status === "current") : 0);
+  const showPersonal = filter === "All" || filter === "Personal";
 
   return (
-    <section className="flex flex-col items-center justify-center py-12 md:py-20 px-6">
-      {/* Freelance Projects Section */}
-      <h1 className={`${title()} text-center mb-12`}>Freelance Projects</h1>
+    <div className="projects-page">
+      <header className="projects-intro">
+        <div className="intro-main">
+          <p className="eyebrow"><span className="intro-mark" /> THE WORK COLLECTION</p>
+          <h1>Thoughtfully built.<br /><span>Connected by purpose.</span></h1>
+          <p className="intro-description">
+            Web platforms, mobile apps, and the systems in between.
+            A closer look at my work, one collaboration at a time.
+          </p>
+        </div>
+        {currentCompany && <a
+          aria-haspopup="dialog"
+          className="current-chapter"
+          href={"#" + currentCompany.id}
+          onClick={(event) => {
+            if (!currentCompany || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            openProject(currentCompany);
+          }}
+        >
+          <span className="current-chapter-label"><span className="status-dot" /> THE CURRENT CHAPTER</span>
+          <span className="current-chapter-name">{currentCompany.name} <Arrow diagonal /></span>
+          <span className="current-chapter-description">{currentCompany.role || "Explore my current work."}</span>
+        </a>}
+      </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-        {freelanceProjects.map((proj) => (
-          <Card
-            key={proj.name}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
-          >
-            <CardBody className="p-6">
-              <div className="flex flex-col h-full">
-                {/* Project Info */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {proj.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">
-                    {proj.desc}
-                  </p>
-                </div>
-
-                {/* Preview Image */}
-                <div className="flex-1 flex justify-center items-center rounded-xl overflow-hidden mb-4">
-                  {proj.images && proj.images.length > 1 ? (
-                    proj.imageMode === "portrait" ? (
-                      <PreviewCarousel images={proj.images} alt={proj.name} />
-                    ) : (
-                      <FadingImageSlider images={proj.images} alt={proj.name} />
-                    )
-                  ) : (
-                    <Image
-                      alt={proj.name}
-                      src={proj.images[0]}
-                      className="object-contain max-h-64 w-auto transition-transform duration-300 group-hover:scale-105"
-                    />
-                  )}
-                </div>
-
-                {/* Link */}
-                <button
-                  onClick={() => handleLearnMore(proj)}
-                  className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline transition-colors cursor-pointer bg-transparent border-none p-0"
-                >
-                  {proj.icon}
-                  {proj.linkLabel}
-                </button>
-              </div>
-            </CardBody>
-          </Card>
-        ))}
+      <div className="collection-toolbar">
+        <div aria-label="Filter projects" className="project-filters" role="group">
+          {filters.map((item) => (
+            <button
+              key={item.label}
+              aria-controls="project-collection"
+              aria-pressed={filter === item.label}
+              className={filter === item.label ? "filter-button is-active" : "filter-button"}
+              onClick={() => setFilter(item.label)}
+            >
+              {item.text}<span>{String(item.count).padStart(2, "0")}</span>
+            </button>
+          ))}
+        </div>
+        <span className="collection-hint">A few products. A bigger picture.</span>
       </div>
 
-      {/* Work Projects Section */}
-      <h2 className={`${title()} text-center mb-12 mt-20`}>Work Projects</h2>
+      <div id="project-collection">
+        <p aria-live="polite" className="sr-only">
+          Showing {filter === "All" ? projectGroups.length + personalProjects.length : filter === "Personal" ? personalProjects.length : visibleProjects.length} {filter === "All" ? "" : filter.toLowerCase() + " "}projects.
+        </p>
+        {visibleProjects.length > 0 && (
+          <section aria-label={filter === "All" ? "Featured collaborations" : filter + " collaborations"}>
+            <div className="collection-heading">
+              <h2>{filter === "All" ? "Featured collaborations" : filter === "Work" ? "Built with a team" : "Independent collaborations"}</h2>
+              <span>{filter === "Work" ? "The companies. The contributions." : "Each card opens a whole story."}</span>
+            </div>
+            <div className="project-grid">
+              {visibleProjects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  index={projectGroups.indexOf(project)}
+                  project={project}
+                  onOpen={openProject}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-        {workProjects.map((proj) => (
-          <Card
-            key={proj.name}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
-          >
-            <CardBody className="p-6">
-              <div className="flex flex-col h-full">
-                {/* Project Info */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {proj.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">
-                    {proj.desc}
-                  </p>
-                </div>
-
-                {/* Preview Image */}
-                <div className="flex-1 flex justify-center items-center rounded-xl overflow-hidden mb-4">
-                  {proj.images && proj.images.length > 1 ? (
-                    proj.imageMode === "portrait" ? (
-                      <PreviewCarousel images={proj.images} alt={proj.name} />
-                    ) : (
-                      <FadingImageSlider images={proj.images} alt={proj.name} />
-                    )
-                  ) : (
-                    <Image
-                      alt={proj.name}
-                      src={proj.images[0]}
-                      className="object-contain max-h-64 w-auto transition-transform duration-300 group-hover:scale-105"
-                    />
-                  )}
-                </div>
-
-                {/* Link */}
-                <button
-                  onClick={() => handleLearnMore(proj)}
-                  className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline transition-colors cursor-pointer bg-transparent border-none p-0"
-                >
-                  {proj.icon}
-                  {proj.linkLabel}
-                </button>
-              </div>
-            </CardBody>
-          </Card>
-        ))}
+        {showPersonal && (
+          <section aria-labelledby="personal-projects-title" className="personal-section">
+            <div className="collection-heading">
+              <h2 id="personal-projects-title">Made out of curiosity</h2>
+              <span>Personal projects & experiments</span>
+            </div>
+            <div className="project-grid">
+              {personalProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  index={projectGroups.length + index}
+                  project={project}
+                  onOpen={openProject}
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
 
-      {/* My Projects Section */}
-      <h2 className={`${title()} text-center mb-12 mt-20`}>My Projects</h2>
+      <footer className="projects-footer">
+        <div>
+          <span className="eyebrow">HAVE SOMETHING IN MIND?</span>
+          <h2>Let&apos;s build the next one.</h2>
+        </div>
+        <a className="project-contact" href="mailto:ashish.gaurav2003@gmail.com">
+          Start a conversation <Arrow diagonal />
+        </a>
+      </footer>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-        {projects.map((proj) => (
-          <Card
-            key={proj.name}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
-          >
-            <CardBody className="p-6">
-              <div className="flex flex-col h-full">
-                {/* Project Info */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {proj.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm leading-relaxed">
-                    {proj.desc}
-                  </p>
-                </div>
-
-                {/* Preview Image */}
-                <div className="flex-1 flex justify-center items-center rounded-xl overflow-hidden mb-4">
-                  <Image
-                    alt={proj.name}
-                    src={proj.image}
-                    className="object-contain max-h-64 w-auto transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-
-                {/* Link */}
-                <a
-                  href={proj.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline transition-colors"
-                >
-                  {proj.icon}
-                  {proj.linkLabel}
-                </a>
-              </div>
-            </CardBody>
-          </Card>
-        ))}
-      </div>
-
-      {/* Project Modal */}
       {selectedProject && (
         <ProjectModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          key={selectedProject.id}
+          isOpen
           project={selectedProject}
+          onClose={closeProject}
         />
       )}
-    </section>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
 import { DbStatusDot } from "@/components/db-status-dot";
 import { siteConfig } from "@/config/site";
+import { currentCompany } from "@/app/projects/workProjectsData";
 
 export default function Home() {
   return (
@@ -98,9 +99,11 @@ export default function Home() {
               <p className="text-xs uppercase tracking-[0.15em] text-default-500">
                 Current Focus
               </p>
-              <p className="mt-2 text-lg font-semibold">Freelancing</p>
+              <p className="mt-2 text-lg font-semibold">
+                {currentCompany?.role ? currentCompany.role + " at " + currentCompany.name : "Independent collaborations"}
+              </p>
               <p className="mt-1 text-default-500 text-sm">
-                Building custom business tools and web portals.
+                {currentCompany?.summary || "Building practical mobile and web applications."}
               </p>
             </CardBody>
           </Card>
