@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import "./project-visuals.css";
+
 import type { ProjectCoverComposition, ProjectImage, ProjectVisual } from "@/app/projects/workProjectsData";
 
 function ProductComposition({ composition }: { composition: ProjectCoverComposition }) {

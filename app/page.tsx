@@ -1,146 +1,126 @@
-import { Link } from "@heroui/link";
-import { Button } from "@heroui/button";
-import { Card, CardBody } from "@heroui/card";
 import Image from "next/image";
+import Link from "next/link";
+
+import { aboutProfile } from "@/app/about/aboutData";
+import { currentCompany, projectGroups } from "@/app/projects/workProjectsData";
+import { ProjectBadge } from "@/components/project-badge";
+import { ProjectCard } from "@/components/project-card";
 import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
-import { DbStatusDot } from "@/components/db-status-dot";
 import { siteConfig } from "@/config/site";
-import { currentCompany } from "@/app/projects/workProjectsData";
+
+import { homeContent } from "./homeData";
+import "./home.css";
+
+function Arrow({ diagonal = false }: { diagonal?: boolean }) {
+  return (
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+      <path
+        d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h15m-6-6 6 6-6 6"}
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+      />
+    </svg>
+  );
+}
 
 export default function Home() {
+  const selectedProjects = homeContent.featuredProjectIds.flatMap((id) => {
+    const project = projectGroups.find((item) => item.id === id);
+    return project ? [project] : [];
+  });
+
   return (
-    <section className="relative min-h-[calc(100vh-200px)] py-8 md:py-12">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute top-1/2 right-0 h-44 w-44 rounded-full bg-emerald-500/10 blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto max-w-6xl flex flex-col gap-8 md:gap-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-8 items-center">
-          <div className="relative mx-auto lg:mx-0">
-            <div className="w-44 h-44 md:w-52 md:h-52 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-gray-900">
-              <Image
-                src="/me.jpg"
-                alt="Ashish Gaurav"
-                width={208}
-                height={208}
-                className="object-cover w-full h-full"
-                priority
-              />
-            </div>
-            <DbStatusDot />
-          </div>
-
-          <div className="text-center lg:text-left space-y-4">
-            <p className="text-xs tracking-[0.2em] uppercase text-default-500">
-              Portfolio
-            </p>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              I build practical digital products for real business workflows.
-            </h1>
-            <p className="text-lg md:text-xl text-default-500">
-              Ashish Gaurav, Python developer focused on Android apps and web
-              applications with clean, scalable architecture.
-            </p>
-
-            <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">
-              <Button
-                as={Link}
-                href="/projects"
-                color="primary"
-                size="lg"
-                className="rounded-full px-8"
-              >
-                View Projects
-              </Button>
-              <Button
-                as={Link}
-                href="/about"
-                variant="bordered"
-                size="lg"
-                className="rounded-full px-8"
-              >
-                About Me
-              </Button>
-              <QuoteModalTrigger />
-              <Button
-                as="a"
-                href={siteConfig.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="flat"
-                size="lg"
-                className="rounded-full px-6 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-foreground font-medium transition-all"
-                startContent={
-                  <svg
-                    className="w-5 h-5 text-primary shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                }
-              >
-                Resume
-              </Button>
-            </div>
+    <div className="home-page">
+      <header className="home-hero">
+        <div className="home-hero-copy">
+          <p className="home-eyebrow home-intro-label">
+            <span aria-hidden="true" className="home-intro-mark" />
+            {homeContent.eyebrow}
+          </p>
+          <h1>{homeContent.headline}<br /><span>{homeContent.headlineAccent}</span></h1>
+          <p className="home-introduction">{homeContent.introduction}</p>
+          <div className="home-hero-actions">
+            <Link className="home-primary-link" href="#selected-work">Explore my work <Arrow /></Link>
+            <a className="home-text-link" href={siteConfig.resumeUrl} rel="noopener noreferrer" target="_blank">Download résumé <Arrow diagonal /></a>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
-            <CardBody className="p-5">
-              <p className="text-xs uppercase tracking-[0.15em] text-default-500">
-                Current Focus
-              </p>
-              <p className="mt-2 text-lg font-semibold">
-                {currentCompany?.role ? currentCompany.role + " at " + currentCompany.name : "Independent collaborations"}
-              </p>
-              <p className="mt-1 text-default-500 text-sm">
-                {currentCompany?.summary || "Building practical mobile and web applications."}
-              </p>
-            </CardBody>
-          </Card>
+        <figure className="home-portrait">
+          <div className="home-portrait-frame">
+            <Image
+              fill
+              priority
+              alt={aboutProfile.name}
+              sizes="(max-width: 600px) 100px, (max-width: 900px) 210px, 260px"
+              src="/me.jpg"
+            />
+          </div>
+          <figcaption>
+            <span>{aboutProfile.name}</span>
+            <a href={aboutProfile.locationUrl} rel="noopener noreferrer" target="_blank">{aboutProfile.location} <Arrow diagonal /></a>
+          </figcaption>
+        </figure>
+      </header>
 
-          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
-            <CardBody className="p-5">
-              <p className="text-xs uppercase tracking-[0.15em] text-default-500">
-                Tech Stack
-              </p>
-              <p className="mt-2 text-lg font-semibold">Python, Django, Next.js</p>
-              <p className="mt-1 text-default-500 text-sm">
-                Practical full-stack delivery from backend to polished UI.
-              </p>
-            </CardBody>
-          </Card>
+      {currentCompany && (
+        <Link className="home-now" href={"/projects#" + currentCompany.id}>
+          <div className="home-now-company">
+            <span className="home-eyebrow">THE CURRENT CHAPTER</span>
+            <div className="home-company-identity">
+              {currentCompany.cover?.logo && <Image alt={currentCompany.cover.logo.alt} height={44} src={currentCompany.cover.logo.src} width={52} />}
+              <div><h2>{currentCompany.name}</h2><p>{currentCompany.role}</p></div>
+            </div>
+          </div>
+          <p className="home-now-summary">{currentCompany.summary}</p>
+          <div className="home-now-action">
+            {currentCompany.status && <ProjectBadge badge={currentCompany.status} />}
+            <span>Explore my role <Arrow diagonal /></span>
+          </div>
+        </Link>
+      )}
 
-          <Card className="rounded-3xl border border-white/10 bg-white/5 dark:bg-black/20 backdrop-blur-xl shadow-lg">
-            <CardBody className="p-5">
-              <p className="text-xs uppercase tracking-[0.15em] text-default-500">
-                Explore
-              </p>
-              <div className="mt-2 flex flex-wrap gap-3 text-sm font-medium">
-                <Link href="/projects">Projects</Link>
-                <Link href="/certificates">Certificates</Link>
-                <Link href="/about">About</Link>
-                <Link
-                  isExternal
-                  href={siteConfig.resumeUrl}
-                  className="text-primary hover:underline"
-                >
-                  Resume
-                </Link>
-              </div>
-            </CardBody>
-          </Card>
+      <section aria-labelledby="selected-work-title" className="home-selected-work" id="selected-work">
+        <div className="home-section-heading">
+          <div><p className="home-eyebrow">SELECTED WORK</p><h2 id="selected-work-title">{homeContent.workHeading}</h2></div>
+          <Link className="home-text-link" href="/projects">All projects <Arrow /></Link>
         </div>
-      </div>
-    </section>
+        <div className="home-project-grid">
+          {selectedProjects.map((project, index) => <ProjectCard key={project.id} index={index} project={project} />)}
+        </div>
+      </section>
+
+      <nav aria-label="More about Ashish" className="home-more">
+        {homeContent.explore.map((item) => (
+          <Link key={item.href} className="home-explore-link" href={item.href}>
+            <span className="home-eyebrow">{item.eyebrow}</span>
+            <div><h2>{item.title}</h2><Arrow /></div>
+            <p>{item.description}</p>
+            <span className="home-explore-label">{item.label}</span>
+          </Link>
+        ))}
+      </nav>
+
+      <section aria-labelledby="home-contact-title" className="home-contact">
+        <div>
+          <p className="home-eyebrow">HAVE SOMETHING IN MIND?</p>
+          <h2 id="home-contact-title">{homeContent.contactHeading}</h2>
+          <p>{homeContent.contactDescription}</p>
+        </div>
+        <div className="home-contact-actions">
+          <QuoteModalTrigger className="home-quote-button" />
+          <a className="home-text-link" href={"mailto:" + aboutProfile.email}>Or send me an email <Arrow diagonal /></a>
+        </div>
+      </section>
+
+      <footer className="home-footer">
+        <span>{aboutProfile.name} / {aboutProfile.location}</span>
+        <div>
+          <a href={siteConfig.links.github} rel="noopener noreferrer" target="_blank">GitHub <Arrow diagonal /></a>
+          <a href={siteConfig.links.linkedin} rel="noopener noreferrer" target="_blank">LinkedIn <Arrow diagonal /></a>
+        </div>
+      </footer>
+    </div>
   );
 }

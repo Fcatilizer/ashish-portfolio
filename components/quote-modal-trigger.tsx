@@ -12,7 +12,7 @@ import {
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
 
-export function QuoteModalTrigger() {
+export function QuoteModalTrigger({ className }: { className?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -104,7 +104,7 @@ export function QuoteModalTrigger() {
         size="lg"
         variant="flat"
         color="success"
-        className="rounded-full px-8"
+        className={className ?? "rounded-full px-8"}
         onPress={() => setIsOpen(true)}
       >
         Get a Quote
