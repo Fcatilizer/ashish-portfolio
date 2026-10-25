@@ -1,113 +1,138 @@
 "use client";
 
-import { title } from "@/components/primitives";
-import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
-import { Image } from "@heroui/image";
-import { Link } from "@heroui/link";
-import { Chip } from "@heroui/chip";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
-const certificates = [
-  {
-    name: "Getting Started with Git and GitHub",
-    provider: "Coursera, IBM",
-    desc: "Usage of Git and GitHub with the appropriate license for projects. CLI configuration and experience.",
-    logo: "https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png",
-    link: "https://www.coursera.org/account/accomplishments/verify/J4LRPNWMG5KQ",
-    linkLabel: "Check Credentials on Coursera",
-    theme: "from-blue-500/15 via-cyan-500/10 to-transparent",
-  },
-  {
-    name: "Introduction to Cloud Computing",
-    provider: "Coursera, IBM",
-    desc: "An introduction to cloud computing with hands-on experience in IBM Cloud deployment.",
-    logo: "https://coursera.s3.amazonaws.com/media/coursera-rebrand-logo-square.png",
-    link: "https://www.coursera.org/account/accomplishments/certificate/2C7WE69LR6FQ",
-    linkLabel: "Check Credentials on Coursera",
-    theme: "from-emerald-500/15 via-teal-500/10 to-transparent",
-  },
-  {
-    name: "CS50 Web Programming with Python and JavaScript",
-    provider: "EDX, HarvardX",
-    desc: "A course by HarvardX focusing on modern Web Programming with Python and JavaScript.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/c/cd/EdX_newer_logo.svg",
-    link: "https://courses.edx.org/certificates/d70991c00ec44aed8c50b23e4c52a4e5",
-    linkLabel: "Check Credentials on EdX",
-    theme: "from-orange-500/15 via-rose-500/10 to-transparent",
-  },
-];
+import {
+  certificateCategories,
+  certificatePlatforms,
+  certificates,
+  type Certificate,
+  type CertificateCategory,
+} from "./certificatesData";
+import "./certificates.css";
+
+function Arrow() {
+  return (
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+      <path d="M6 18 18 6M6 6h12v12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function CertificateCard({ certificate, index }: { certificate: Certificate; index: number }) {
+  const platform = certificatePlatforms[certificate.platform];
+
+  return (
+    <article className="credential-card">
+      <span aria-hidden="true" className="credential-index">{String(index + 1).padStart(2, "0")}</span>
+      <div className="credential-logo">
+        <Image alt={platform.name + " logo"} height={72} src={platform.logo} width={72} />
+      </div>
+      <div className="credential-body">
+        <p className="credential-metadata">
+          <span>{certificateCategories[certificate.category].label}</span>
+          <span aria-hidden="true" className="credential-meta-separator">/</span>
+          <span>{certificate.issuer} <span className="credential-platform">via {platform.name}</span></span>
+        </p>
+        <h2>{certificate.name}</h2>
+        <p className="credential-description">{certificate.description}</p>
+        <ul aria-label="Course topics" className="credential-topics">
+          {certificate.topics.map((topic) => <li key={topic}>{topic}</li>)}
+        </ul>
+      </div>
+      <a
+        aria-label={"View credential for " + certificate.name + " on " + platform.name}
+        className="credential-link"
+        href={certificate.credentialUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        View credential <Arrow />
+      </a>
+    </article>
+  );
+}
+
+const providers = Array.from(new Map(certificates.map((certificate) => [
+  certificate.issuer + "-" + certificate.platform,
+  { issuer: certificate.issuer, platform: certificatePlatforms[certificate.platform] },
+])).values());
 
 export default function CertificatesPage() {
-  return (
-    <section className="relative w-full py-8 md:py-14">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl" />
-      </div>
+  const [category, setCategory] = useState<CertificateCategory | "all">("all");
+  const visibleCertificates = certificates.filter((certificate) => category === "all" || certificate.category === category);
 
-      <div className="relative mx-auto w-full max-w-6xl px-4 md:px-6">
-        <div className="mb-10 md:mb-14 text-center">
-          <h1 className={`${title()} mb-4`}>My Certificates</h1>
-          <p className="mx-auto max-w-2xl text-default-500 text-base md:text-lg">
-            Verified learning milestones across software engineering, cloud,
-            and modern web development.
+  return (
+    <div className="certificates-page">
+      <header className="certificates-intro">
+        <div>
+          <p className="certificates-eyebrow certificates-intro-label"><span aria-hidden="true" className="certificates-intro-mark" /> LEARNING / CREDENTIALS</p>
+          <h1>Certificates &<br /><span>continued learning.</span></h1>
+          <p className="certificates-description">
+            Courses in web development, cloud computing, and version control
+            that support the way I build software.
           </p>
         </div>
+        <aside aria-label="Course providers" className="certificates-providers">
+          <span className="certificates-eyebrow">COURSES FROM</span>
+          <div className="certificates-provider-list">
+            {providers.map((provider) => (
+              <div key={provider.issuer + "-" + provider.platform.name} className="certificates-provider">
+                <Image alt={provider.platform.name + " logo"} height={64} src={provider.platform.logo} width={64} />
+                <div><strong>{provider.issuer}</strong><span>via {provider.platform.name}</span></div>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
-          {certificates.map((cert) => (
-            <Card
-              key={cert.link}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] dark:bg-black/20 backdrop-blur-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-            >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${cert.theme} opacity-70 transition-opacity duration-300 group-hover:opacity-100`}
-              />
+      <div className="certificates-toolbar">
+        <div aria-label="Filter certificates" className="certificates-filters" role="group">
+          <button aria-controls="credential-collection" aria-pressed={category === "all"} className={category === "all" ? "certificate-filter is-active" : "certificate-filter"} onClick={() => setCategory("all")}>
+            All <span>{String(certificates.length).padStart(2, "0")}</span>
+          </button>
+          {Object.keys(certificateCategories).map((key) => {
+            const id = key as CertificateCategory;
+            const definition = certificateCategories[id];
+            const count = certificates.filter((certificate) => certificate.category === id).length;
 
-              <CardHeader className="relative z-10 p-6 pb-4 flex items-start gap-4">
-                <div className="rounded-xl bg-white/80 dark:bg-black/40 p-2.5 ring-1 ring-white/20">
-                  <Image
-                    alt={`${cert.provider} logo`}
-                    width={36}
-                    height={36}
-                    radius="sm"
-                    src={cert.logo}
-                    className="object-contain"
-                  />
-                </div>
-
-                <div className="flex-1 min-w-0 text-left">
-                  <h3 className="text-base md:text-lg font-semibold text-foreground leading-snug">
-                    {cert.name}
-                  </h3>
-                  <Chip
-                    size="sm"
-                    variant="flat"
-                    className="mt-2 bg-white/60 dark:bg-white/10 text-default-700 dark:text-default-300"
-                  >
-                    {cert.provider}
-                  </Chip>
-                </div>
-              </CardHeader>
-
-              <CardBody className="relative z-10 px-6 py-3">
-                <p className="text-sm text-default-600 dark:text-default-400 leading-relaxed">
-                  {cert.desc}
-                </p>
-              </CardBody>
-
-              <CardFooter className="relative z-10 px-6 pt-3 pb-6">
-                <Link
-                  isExternal
-                  showAnchorIcon
-                  href={cert.link}
-                  className="font-medium text-primary"
-                >
-                  {cert.linkLabel}
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
+            return (
+              <button
+                key={id}
+                aria-controls="credential-collection"
+                aria-pressed={category === id}
+                className={category === id ? "certificate-filter is-active" : "certificate-filter"}
+                title={definition.label}
+                onClick={() => setCategory(id)}
+              >
+                {definition.shortLabel} <span>{String(count).padStart(2, "0")}</span>
+              </button>
+            );
+          })}
         </div>
+        <span className="certificates-toolbar-note">A foundation for the work.</span>
       </div>
-    </section>
+
+      <section aria-label="Certificate archive" id="credential-collection">
+        <div className="certificates-collection-heading">
+          <p>{category === "all" ? "The credential archive" : certificateCategories[category].label}</p>
+          <span aria-live="polite">{visibleCertificates.length} {visibleCertificates.length === 1 ? "credential" : "credentials"}</span>
+        </div>
+        <div className="credential-list">
+          {visibleCertificates.map((certificate) => <CertificateCard key={certificate.id} certificate={certificate} index={certificates.indexOf(certificate)} />)}
+        </div>
+      </section>
+
+      <footer className="certificates-footer">
+        <div>
+          <span className="certificates-eyebrow">LEARNING IN PRACTICE</span>
+          <h2>See what I build with it.</h2>
+          <p>Explore my web platforms, mobile apps, and backend work.</p>
+        </div>
+        <Link href="/projects">View my projects <Arrow /></Link>
+      </footer>
+    </div>
   );
 }

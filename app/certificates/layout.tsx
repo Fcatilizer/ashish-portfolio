@@ -3,11 +3,11 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Certificates",
   description:
-    "Professional certifications and achievements of Ashish Gaurav in software development, web technologies, and mobile app development.",
+    "Explore Ashish Gaurav's course credentials in Git and GitHub, cloud computing, and web programming, with direct links to Coursera and edX.",
   openGraph: {
     title: "Certificates | Ashish Gaurav",
     description:
-      "Professional certifications and achievements in software development, web technologies, and mobile app development.",
+      "Course credentials from IBM and HarvardX, covering version control, cloud computing, and web programming.",
   },
 };
 
