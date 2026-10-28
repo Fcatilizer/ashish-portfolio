@@ -111,7 +111,8 @@ export const journeyChapters: JourneyChapter[] = [
     shortPeriod: "2025",
     preview: "Python & business workflows",
     description:
-      sukan?.overview || "Python development for internal business tools and customer-facing applications.",
+      (Array.isArray(sukan?.overview) ? sukan.overview.join(" ") : sukan?.overview) ||
+      "Python development for internal business tools and customer-facing applications.",
     logo: sukan?.cover?.logo,
     work: [
       "Admin tools for customer access, announcements, banners, and permissions",

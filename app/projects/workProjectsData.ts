@@ -24,7 +24,7 @@ export interface ProjectProduct {
   summary: string;
   logo?: { src: string; alt: string };
   status?: ProjectStatus;
-  description: string;
+  description: string | string[];
   work: string[];
   images: string[];
   imageMode: "landscape" | "portrait";
@@ -40,7 +40,7 @@ export interface ProjectGroup {
   visual: ProjectVisual;
   cover?: ProjectCoverComposition;
   summary: string;
-  overview: string;
+  overview: string | string[];
   role?: string;
   roleDescription?: string;
   work?: string[];
@@ -68,7 +68,7 @@ export const projectGroups: ProjectGroup[] = [
     },
     summary: "One learning ecosystem. From the people running it to the students using it.",
     overview:
-      "An education platform connecting the administrative side of learning with the student experience. My freelance work spans a management platform for admins and teachers, and a companion app for students on Android and iOS.",
+      "An education platform connecting the administrative side of learning with the student experience. It combines a management platform for admins and teachers with a companion app for students on Android and iOS.",
     areas: ["Web platform", "Superadmin Dashboard", "Admin Dashboard", "Teacher Dashboard", "Android", "iOS"],
     products: [
       {
@@ -127,7 +127,7 @@ export const projectGroups: ProjectGroup[] = [
     },
     summary: "Connected tools for the business behind the scenes and the customers out front.",
     overview:
-      "My work at Sukan brings together two sides of the same business: an internal admin panel and the EnkiNext customer portal. Together, they support customer access, product discovery, business documents, and communications.",
+      "Sukan's internal admin panel and EnkiNext customer portal connect business operations with the customer experience. Together, they support customer access, product discovery, business documents, and communications.",
     areas: ["Web platform", "Admin dashboard", "Android", "iOS"],
     products: [
       {
@@ -188,7 +188,7 @@ export const projectGroups: ProjectGroup[] = [
     },
     summary: "Fresh produce, from farmers to the doorstep. A connected web and mobile experience.",
     overview:
-      "Mammam — Our Little Potato Farmer is a fresh produce delivery platform. Customers can order seasonal fruit and vegetables sourced from farmers for same-morning delivery. My freelance work brings together the public landing page, an admin dashboard, and the companion Android app.",
+      "Mammam — Our Little Potato Farmer delivers seasonal fruits and vegetables from local farms to customers by early morning. Overnight orders guide farm purchases at dawn and delivery within hours, avoiding days of stored stock. The service combines clear pricing and plastic-free packaging with a customer app, an operations dashboard, and a public landing page, supported by backend services and deployment infrastructure.",
     status: "new",
     areas: ["Web platform", "Admin dashboard", "Android", "iOS"],
     links: [
@@ -201,19 +201,24 @@ export const projectGroups: ProjectGroup[] = [
         name: "Web platform",
         type: "Landing page & admin dashboard",
         summary: "The public storefront and the workspace behind daily operations.",
-        description:
-          "A public landing page introduces Mammam and directs customers to the app. The admin dashboard supports the operational side: managing produce, keeping track of orders and stock requirements, and configuring offers and promotions.",
+        description: [
+          "Public landing page explaining farm sourcing, morning delivery, and sustainable packaging.",
+          "Starter basket builder to help customers plan essentials before downloading the app.",
+          "Operations dashboard connecting customer demand, farm procurement, inventory, and fulfillment.",
+        ],
         work: [
-          "Public landing page and app download journey",
-          "Dashboard overview of revenue, active orders, and stock requirements",
           "Catalog management for products, categories, and variants",
-          "Order listings, status filters, and delivery details",
-          "Offers, promotions, and featured produce configuration",
+          "City and locality controls to enable or pause delivery coverage",
+          "City-specific delivery fees: flat rates, distance-based charges, and free-delivery thresholds",
+          "Seasonal offers, product discounts, and promotional banners reflected in the app",
+          "Procurement lists and restock alerts with demand grouped by product and unit",
+          "Revenue and order monitoring, including payments, cancellations, customers, and fulfillment",
+          "Django REST APIs for authentication, pricing, promotions, and order state changes",
+          "MongoDB data, RustFs media storage, and Docker deployments through Nginx and Dokploy",
         ],
         images: ["/Screenshots/m1.png", "/Screenshots/m2.png", "/Screenshots/m3.png", "/Screenshots/m4.png", "/Screenshots/m5.png"],
         imageMode: "landscape",
-        // Add the confirmed stack here to display this product's "Built with" section.
-        technologies: ["Django", "Ant Design", "React Js", "Vite", "REST APIs", "Git", "Dokploy", "MongoDB", "Docker", "Nginx", "RustFs"],
+        technologies: ["Django", "Riverpod", "Ant Design", "React Js", "Vite", "REST APIs", "Git", "Dokploy", "MongoDB", "Docker", "Nginx", "RustFs"],
         links: [{ label: "Visit website", url: "https://ourlittlepotatofarmer.com/" }],
       },
       {
@@ -221,18 +226,23 @@ export const projectGroups: ProjectGroup[] = [
         name: "Android app",
         type: "Customer mobile application",
         summary: "Seasonal fruit and vegetables, ordered for doorstep delivery.",
-        description:
-          "The customer app for Mammam's farm-sourced produce delivery service. Shoppers can browse fruit and vegetables, choose quantities, and manage their delivery preferences.",
+        description: [
+          "Flutter customer app with Riverpod state management for everyday grocery orders.",
+          "Browse seasonal produce, build a basket, and arrange morning delivery.",
+        ],
         work: [
-          "Produce browsing, search, and promotional discovery",
+          "Daily picks, seasonal categories, search, and active offers",
           "Product details, quantity selection, and basket actions",
-          "Customer profiles, delivery addresses, and delivery slot preferences",
-          "Past orders and customer support entry points",
+          "Address eligibility and delivery fees based on city and service availability",
+          "Checkout breakdown with item totals, GST, discounts, delivery charges, and savings",
+          "Morning delivery slots, including before 7 AM, with customer delivery notes",
+          "Live order progress from confirmation through dispatch to delivery",
+          "Customer profiles, saved addresses, order history, and support",
           "Notification preferences and account settings",
         ],
         images: ["/Screenshots/ma1.png", "/Screenshots/ma2.png", "/Screenshots/ma3.png", "/Screenshots/ma4.png", "/Screenshots/ma5.png", "/Screenshots/ma6.png"],
         imageMode: "portrait",
-        technologies: ["Flutter", "Android Studio", "Xcode"],
+        technologies: ["Flutter", "Riverpod", "Android Studio", "Xcode"],
         links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.ourlittlepotatofarmer.mammam" }],
       },
     ],
@@ -249,18 +259,18 @@ export const projectGroups: ProjectGroup[] = [
       caption: "Company website · Photography & event workflows",
       logo: { src: "/samaro.png", alt: "Samaro logo" },
     },
-    summary: "Django/Python backend work on CRM, CRM Inbox, and Meta platform integrations.",
+    summary: "CRM, CRM Inbox, and Meta platform integrations with Django and Python backend services.",
     overview:
       "Samaro builds AI-powered tools for photographers, studios, and event teams. Its platform brings together camera-to-cloud workflows, photo culling and editing, facial recognition, branded galleries, and media delivery.",
     role: "Software Engineer Intern",
     roleDescription:
-      "I primarily work on Django and Python backend development. My current focus is CRM and CRM Inbox, including Meta API integrations for WhatsApp and Instagram Business Embedded Signup. I also contribute occasional Angular frontend changes and other requested features.",
+      "The CRM and CRM Inbox use Django and Python backend services, with Meta API integrations for WhatsApp and Instagram Business Embedded Signup. The frontend uses Angular.",
     work: [
-      "Backend development for CRM and CRM Inbox",
+      "CRM and CRM Inbox backend services",
       "WhatsApp integration through Meta APIs",
       "Instagram Business Embedded Signup and related Meta platform integrations",
-      "Backend feature development and requested product changes",
-      "Occasional Angular frontend contributions",
+      "Backend product features and platform integrations",
+      "Angular frontend",
     ],
     technologies: ["Python", "Django", "Celery", "Redis", "RabbitMQ", "PostgreSQL", "pgAdmin", "Meta APIs"],
     status: "current",

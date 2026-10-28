@@ -215,7 +215,9 @@ export function ProjectModal({
                 <div className="product-detail-columns">
                   <div>
                     <span className="eyebrow">THE PRODUCT</span>
-                    <p>{activeProduct.description}</p>
+                    {Array.isArray(activeProduct.description) ? (
+                      <ul className="contribution-list">{activeProduct.description.map((point) => <li key={point}>{point}</li>)}</ul>
+                    ) : <p>{activeProduct.description}</p>}
                     {activeProduct.technologies.length > 0 && (
                       <div className="case-tech">
                         <h4>Built with</h4>
@@ -224,7 +226,7 @@ export function ProjectModal({
                     )}
                   </div>
                   <div>
-                    <span className="eyebrow">WHAT I WORKED ON</span>
+                    <span className="eyebrow">KEY FEATURES</span>
                     <ul className="contribution-list">{activeProduct.work.map((work) => <li key={work}>{work}</li>)}</ul>
                   </div>
                 </div>
@@ -234,14 +236,16 @@ export function ProjectModal({
                 <div className="case-cover"><ProjectCover composition={project.cover} visual={project.visual} /></div>
                 <div className="case-overview-copy">
                   <div>
-                    <span className="eyebrow">{project.role ? "ABOUT THE COMPANY" : project.products.length ? "THE BIGGER PICTURE" : "A NEW CHAPTER"}</span>
-                    <p>{project.overview}</p>
+                    <span className="eyebrow">{project.role ? "ABOUT THE COMPANY" : "ABOUT THE PROJECT"}</span>
+                    {Array.isArray(project.overview) ? (
+                      <ul className="contribution-list">{project.overview.map((point) => <li key={point}>{point}</li>)}</ul>
+                    ) : <p>{project.overview}</p>}
                     {project.note && <p className="case-note">{project.note}</p>}
                     <ExternalLinks links={project.links} />
                   </div>
                   <dl className="case-facts">
-                    {project.role && <div><dt>My role</dt><dd>{project.role}</dd></div>}
-                    <div><dt>Collaboration</dt><dd>{project.category === "Work" ? "Company work" : "Freelance"}</dd></div>
+                    {project.role && <div><dt>Role</dt><dd>{project.role}</dd></div>}
+                    <div><dt>Project type</dt><dd>{project.category === "Work" ? "Company project" : "Freelance project"}</dd></div>
                     {project.products.length > 0 && <div><dt>Project scope</dt><dd>{getProjectBadge("connected-products", project.products.length).label}</dd></div>}
                     <div><dt>{project.products.length ? "Across" : "Focus"}</dt><dd>{project.areas.join(" · ")}</dd></div>
                   </dl>
@@ -249,20 +253,20 @@ export function ProjectModal({
                 {project.role && (
                   <section className="case-products-section case-role-section">
                     <div className="case-section-heading">
-                      <h3>My work at {project.name}</h3>
+                      <h3>Technical overview</h3>
                       <span>{project.role}</span>
                     </div>
                     {project.roleDescription && <p className="case-role-description">{project.roleDescription}</p>}
                     <div className="product-detail-columns">
                       {project.work && project.work.length > 0 && (
                         <div>
-                          <span className="eyebrow">WHAT I WORK ON</span>
+                          <span className="eyebrow">CORE AREAS</span>
                           <ul className="contribution-list">{project.work.map((work) => <li key={work}>{work}</li>)}</ul>
                         </div>
                       )}
                       {project.technologies && project.technologies.length > 0 && (
                         <div>
-                          <span className="eyebrow">PRIMARY STACK & TOOLS</span>
+                          <span className="eyebrow">TECH STACK & TOOLS</span>
                           <div className="case-tech">
                             <div className="project-tags">{project.technologies.map((tech) => <span key={tech}>{tech}</span>)}</div>
                           </div>
@@ -273,7 +277,7 @@ export function ProjectModal({
                 )}
                 {project.products.length > 0 && (
                   <div className="case-products-section">
-                    <div className="case-section-heading"><h3>Inside the project</h3><span>Select a product to explore my work.</span></div>
+                    <div className="case-section-heading"><h3>Inside the project</h3><span>Select a product to explore its features.</span></div>
                     <div className="case-product-grid">
                       {project.products.map((product, index) => {
                         const logo = product.logo ?? project.cover?.logo;

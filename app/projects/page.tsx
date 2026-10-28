@@ -80,7 +80,7 @@ export default function ProjectsPage() {
         eyebrow="THE WORK COLLECTION"
         title="Thoughtfully built."
         accent="Connected by purpose."
-        description="Web platforms, mobile apps, and the systems in between. A closer look at my work, one collaboration at a time."
+        description="Web platforms, mobile apps, and the systems in between. Explore each project's purpose, features, and technology."
         aside={currentCompany && <a
           aria-haspopup="dialog"
           className="current-chapter"
@@ -119,10 +119,10 @@ export default function ProjectsPage() {
           Showing {filter === "All" ? projectGroups.length + personalProjects.length : filter === "Personal" ? personalProjects.length : visibleProjects.length} {filter === "All" ? "" : filter.toLowerCase() + " "}projects.
         </p>
         {visibleProjects.length > 0 && (
-          <section aria-label={filter === "All" ? "Featured collaborations" : filter + " collaborations"}>
+          <section aria-label={filter === "All" ? "Featured projects" : filter === "Work" ? "Professional projects" : "Freelance projects"}>
             <div className="collection-heading">
-              <h2>{filter === "All" ? "Featured collaborations" : filter === "Work" ? "Built with a team" : "Independent collaborations"}</h2>
-              <span>{filter === "Work" ? "The companies. The contributions." : "Each card opens a whole story."}</span>
+              <h2>{filter === "All" ? "Featured projects" : filter === "Work" ? "Professional projects" : "Freelance projects"}</h2>
+              <span>Explore the features and technology.</span>
             </div>
             <div className="project-grid">
               {visibleProjects.map((project) => (
