@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import styles from "./profile-portrait.module.css";
 
-type PortraitProfile = {
+export type PortraitProfile = {
   name: string;
   portrait: string;
   location: string;

@@ -5,7 +5,7 @@ import { aboutProfile } from "@/app/about/aboutData";
 import { currentCompany, projectGroups } from "@/app/projects/workProjectsData";
 import { ProjectBadge } from "@/components/project-badge";
 import { ProjectCard } from "@/components/project-card";
-import { ProfilePortrait } from "@/components/profile-portrait";
+import { ProfileHero } from "@/components/profile-hero";
 import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
 import { siteConfig } from "@/config/site";
 
@@ -34,22 +34,15 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <header className="home-hero">
-        <div className="home-hero-copy">
-          <p className="home-eyebrow home-intro-label">
-            <span aria-hidden="true" className="home-intro-mark" />
-            {homeContent.eyebrow}
-          </p>
-          <h1>{homeContent.headline}<br /><span>{homeContent.headlineAccent}</span></h1>
-          <p className="home-introduction">{homeContent.introduction}</p>
-          <div className="home-hero-actions">
-            <Link className="home-primary-link" href="#selected-work">Explore my work <Arrow /></Link>
-            <a className="home-text-link" href={siteConfig.resumeUrl} rel="noopener noreferrer" target="_blank">Download résumé <Arrow diagonal /></a>
-          </div>
-        </div>
-
-        <ProfilePortrait profile={aboutProfile} />
-      </header>
+      <ProfileHero
+        profile={aboutProfile}
+        eyebrow={homeContent.eyebrow}
+        title={homeContent.headline}
+        accent={homeContent.headlineAccent}
+        description={homeContent.introduction}
+        primaryAction={<Link href="#selected-work">Explore my work <Arrow /></Link>}
+        secondaryAction={<a href={siteConfig.resumeUrl} rel="noopener noreferrer" target="_blank">Download résumé <Arrow diagonal /></a>}
+      />
 
       {currentCompany && (
         <Link className="home-now" href={"/projects#" + currentCompany.id}>

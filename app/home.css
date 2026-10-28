@@ -10,7 +10,7 @@
   color: var(--h-text);
   max-width: 1120px;
   margin: 0 auto;
-  padding: 48px 0 15px;
+  padding: 0 0 15px;
 }
 
 .dark .home-page {
@@ -25,18 +25,9 @@
 }
 
 .home-eyebrow { font-size: 9px; line-height: 1.6; font-weight: 500; letter-spacing: .14em; color: var(--h-muted); }
-.home-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; align-items: center; gap: 70px; padding: 0 28px 45px 0; }
-.home-intro-label { display: flex; align-items: center; gap: 10px; margin-bottom: 26px; }
-.home-intro-mark { flex-shrink: 0; height: 8px; width: 8px; border: 1px solid var(--h-accent); transform: rotate(45deg); }
-.home-hero h1 { font-size: clamp(40px, 4.9vw, 70px); line-height: 1.12; font-weight: 550; letter-spacing: -.055em; }
-.home-hero h1 > span { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.045em; color: var(--h-muted); }
-.home-introduction { max-width: 500px; font-size: 14px; line-height: 1.95; color: var(--h-muted); margin-top: 24px; text-wrap: pretty; }
-.home-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 25px; margin-top: 28px; }
-.home-primary-link { display: inline-flex; align-items: center; justify-content: center; gap: 25px; padding: 13px 17px; background: var(--h-text); color: var(--h-inverse); border-radius: 7px; font-size: 11px; font-weight: 500; transition: opacity .2s, transform .2s; }
-.home-primary-link:hover { opacity: .85; transform: translateY(-1px); }
 .home-text-link { display: inline-flex; align-items: center; gap: 12px; color: var(--h-muted); font-size: 11px; }
 .home-text-link:hover { color: var(--h-text); }
-.home-primary-link svg, .home-text-link svg, .home-now-action svg, .home-explore-link svg { height: 15px; width: 15px; flex-shrink: 0; transition: transform .2s; }
+.home-text-link svg, .home-now-action svg, .home-explore-link svg { height: 15px; width: 15px; flex-shrink: 0; transition: transform .2s; }
 .home-text-link:hover svg { transform: translateX(2px); }
 .home-now { display: grid; grid-template-columns: 1fr 1.1fr auto; gap: 40px; align-items: center; padding: 26px 28px; border: 1px solid var(--h-border); border-radius: 12px; background: var(--h-surface); transition: border-color .2s, background .2s; }
 .home-now:hover { border-color: var(--h-faint); background: var(--h-soft); }
@@ -79,13 +70,7 @@
 .home-footer svg { height: 11px; width: 11px; }
 .home-page :is(a, button):focus-visible { outline: 2px solid var(--h-accent); outline-offset: 4px; }
 
-@media (min-width: 1600px) {
-  .home-page { padding-top: 66px; }
-}
-
 @media (max-width: 1050px) {
-  .home-hero { gap: 35px; grid-template-columns: minmax(0, 1fr) 210px; padding-right: 10px; }
-  .home-hero h1 { font-size: clamp(40px, 5.4vw, 58px); }
   .home-now { gap: 22px; padding: 24px; }
   .home-now-summary { padding-left: 22px; font-size: 11px; }
   .home-now-action { gap: 17px; }
@@ -94,14 +79,6 @@
 }
 
 @media (max-width: 767px) {
-  .home-page { padding-top: 25px; }
-  .home-hero { display: flex; flex-direction: column-reverse; align-items: stretch; gap: 27px; padding: 0 0 32px; }
-  .home-hero h1 { font-size: clamp(35px, 5.6vw, 45px); }
-  .home-intro-label { font-size: 7px; letter-spacing: .09em; margin-bottom: 20px; gap: 8px; }
-  .home-introduction { font-size: 12px; margin-top: 19px; }
-  .home-hero-actions { gap: 17px; margin-top: 22px; }
-  .home-primary-link { font-size: 10px; padding: 12px 14px; gap: 17px; }
-  .home-hero-actions .home-text-link { font-size: 10px; gap: 7px; }
   .home-now { grid-template-columns: 1fr auto; gap: 18px; }
   .home-now-company { grid-column: 1 / -1; }
   .home-now-company > .home-eyebrow { font-size: 7px; }
@@ -124,10 +101,6 @@
 }
 
 @media (max-width: 600px) {
-  .home-hero h1 { font-size: clamp(32px, 7.9vw, 47px); }
-  .home-intro-label { font-size: 7px; margin-bottom: 17px; }
-  .home-introduction { max-width: 450px; }
-  .home-hero-actions { column-gap: 22px; row-gap: 15px; }
   .home-now { padding: 21px; grid-template-columns: 1fr; gap: 14px; }
   .home-now-company { grid-column: auto; }
   .home-company-identity h2 { font-size: 20px; }

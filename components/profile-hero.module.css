@@ -1,0 +1,61 @@
+.hero {
+  --hero-text: #24262e;
+  --hero-muted: #6b6f7b;
+  --hero-accent: #7162a6;
+  --hero-inverse: #ffffff;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: start;
+  column-gap: 70px;
+  row-gap: 24px;
+  padding: 48px 28px 46px 0;
+  color: var(--hero-text);
+}
+
+:global(.dark) .hero {
+  --hero-text: #eeeff3;
+  --hero-muted: #989ba8;
+  --hero-accent: #bbb1e1;
+  --hero-inverse: #121318;
+}
+
+.eyebrow { grid-column: 1; grid-row: 1; display: flex; align-items: center; gap: 10px; font-size: 9px; line-height: 1.6; font-weight: 500; letter-spacing: .14em; color: var(--hero-muted); }
+.mark { flex-shrink: 0; height: 8px; width: 8px; border: 1px solid var(--hero-accent); transform: rotate(45deg); }
+.copy { grid-column: 1; grid-row: 2; min-width: 0; }
+/* The portrait starts in the heading's row, so copy height never moves it. */
+.portrait { grid-column: 2; grid-row: 2; min-width: 0; }
+.copy h1 { font-size: clamp(40px, 4.6vw, 63px); line-height: 1.12; font-weight: 550; letter-spacing: -.055em; }
+.copy h1 > span { display: block; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.045em; color: var(--hero-muted); }
+.description { max-width: 565px; font-size: 14px; line-height: 1.95; color: var(--hero-muted); margin-top: 23px; text-wrap: pretty; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 25px; margin-top: 25px; }
+.primaryAction > :is(a, button) { display: inline-flex; align-items: center; justify-content: center; gap: 24px; padding: 13px 17px; border-radius: 7px; background: var(--hero-text); color: var(--hero-inverse); font-size: 11px; font-weight: 500; transition: opacity .2s, transform .2s; }
+.primaryAction > :is(a, button):hover { opacity: .85; transform: translateY(-1px); }
+.secondaryAction > a { display: inline-flex; align-items: center; gap: 10px; color: var(--hero-muted); font-size: 11px; }
+.secondaryAction > a:hover { color: var(--hero-text); }
+.actions svg { width: 15px; height: 15px; flex-shrink: 0; }
+.hero :is(a, button):focus-visible { outline: 2px solid var(--hero-accent); outline-offset: 4px; }
+
+@media (min-width: 1600px) {
+  .hero { padding-top: 66px; }
+}
+
+@media (max-width: 1050px) {
+  .hero { grid-template-columns: minmax(0, 1fr) 225px; column-gap: 38px; padding-right: 10px; }
+  .copy h1 { font-size: 49px; }
+}
+
+@media (max-width: 767px) {
+  .hero { grid-template-columns: minmax(0, 1fr); column-gap: 0; row-gap: 0; padding: 25px 0 32px; }
+  .portrait { grid-column: 1; grid-row: 1; margin-bottom: 27px; }
+  .eyebrow { grid-column: 1; grid-row: 2; gap: 8px; margin-bottom: 19px; font-size: 8px; letter-spacing: .09em; }
+  .copy { grid-column: 1; grid-row: 3; }
+  .copy h1 { font-size: clamp(32px, 7.9vw, 47px); }
+  .description { max-width: 565px; font-size: 12px; margin-top: 19px; }
+  .actions { column-gap: 22px; row-gap: 15px; margin-top: 22px; }
+  .primaryAction > :is(a, button) { font-size: 10px; padding: 12px 14px; gap: 17px; }
+  .secondaryAction > a { font-size: 10px; gap: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero * { transition: none !important; }
+}

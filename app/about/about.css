@@ -25,24 +25,11 @@
   --a-inverse: #121318;
 }
 
-.about-page { max-width: 1120px; margin: 0 auto; padding: 48px 0 15px; }
+.about-page { max-width: 1120px; margin: 0 auto; padding: 0 0 15px; }
 .about-eyebrow { font-size: 9px; line-height: 1.6; font-weight: 500; letter-spacing: .14em; color: var(--a-muted); text-transform: uppercase; }
-.about-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; align-items: center; gap: 70px; padding: 0 28px 46px 0; }
-.about-intro-label { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
-.about-intro-mark { height: 8px; width: 8px; border: 1px solid var(--a-accent); transform: rotate(45deg); }
-.about-hero h1 { font-size: clamp(42px, 4.6vw, 63px); line-height: 1.12; letter-spacing: -.055em; font-weight: 550; }
-.about-hero h1 > span { font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-style: italic; letter-spacing: -.045em; color: var(--a-muted); }
-.about-introduction { margin-top: 23px; max-width: 565px; color: var(--a-muted); font-size: 14px; line-height: 1.95; text-wrap: pretty; }
-.about-hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 23px; margin-top: 25px; }
-.about-primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 24px; background: var(--a-text); color: var(--a-inverse); padding: 12px 17px; border-radius: 7px; font-size: 11px; font-weight: 500; transition: opacity .2s, transform .2s; }
-.about-primary-button:hover { opacity: .85; transform: translateY(-1px); }
-.about-primary-button svg,
-.about-resume-link svg,
 .about-text-link svg,
 .about-email-link svg,
 .about-page-footer svg { width: 15px; height: 15px; flex-shrink: 0; }
-.about-resume-link { color: var(--a-muted); font-size: 11px; display: inline-flex; align-items: center; gap: 10px; }
-.about-resume-link:hover { color: var(--a-text); }
 .about-chapters-row { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; padding-top: 30px; border-top: 1px solid var(--a-border); }
 .about-now-panel,
 .about-journey-preview { padding: 25px 28px; background: var(--a-surface); border: 1px solid var(--a-border); border-radius: 13px; text-align: left; min-width: 0; }
@@ -176,8 +163,6 @@ a.about-text-link:hover svg { transform: translate(2px, -2px); }
 .journey-stop:focus-visible { outline-offset: -4px !important; }
 
 @media (max-width: 1000px) {
-  .about-hero { gap: 38px; grid-template-columns: minmax(0, 1fr) 225px; padding-right: 10px; }
-  .about-hero h1 { font-size: 49px; }
   .about-now-panel,
   .about-journey-preview { padding: 24px; }
   .journey-layout { grid-template-columns: 270px minmax(0, 1fr); }
@@ -186,14 +171,6 @@ a.about-text-link:hover svg { transform: translate(2px, -2px); }
 }
 
 @media (max-width: 767px) {
-  .about-page { padding-top: 26px; }
-  .about-hero { display: flex; flex-direction: column-reverse; align-items: stretch; padding: 0 0 29px; gap: 27px; }
-  .about-intro-label { margin-bottom: 19px; font-size: 8px; }
-  .about-hero h1 { font-size: clamp(37px, 7.5vw, 52px); }
-  .about-introduction { font-size: 12px; line-height: 1.95; margin-top: 19px; }
-  .about-hero-actions { gap: 19px; margin-top: 22px; }
-  .about-primary-button { font-size: 10px; padding: 12px 14px; gap: 17px; }
-  .about-resume-link { font-size: 10px; gap: 7px; }
   .about-chapters-row { grid-template-columns: 1fr 1fr; gap: 16px; padding-top: 23px; }
   .about-now-panel,
   .about-journey-preview { padding: 21px; }
@@ -286,12 +263,8 @@ a.about-text-link:hover svg { transform: translate(2px, -2px); }
 }
 
 @media (max-width: 380px) {
-  .about-hero h1 { font-size: 34px; }
   .about-now-panel,
   .about-journey-preview { padding: 20px; }
-  .about-hero-actions { gap: 15px; }
-  .about-primary-button { gap: 11px; }
-  .about-resume-link { font-size: 9px; }
   .about-panel-topline > .about-eyebrow { font-size: 8px; }
   .about-email-link { font-size: 11px; gap: 7px; }
   .journey-layout { grid-template-columns: 72px minmax(0, 1fr); }

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { currentCompany } from "@/app/projects/workProjectsData";
 import { JourneyModal } from "@/components/journey-modal";
 import { ProjectBadge } from "@/components/project-badge";
-import { ProfilePortrait } from "@/components/profile-portrait";
+import { ProfileHero } from "@/components/profile-hero";
 import { siteConfig } from "@/config/site";
 
 import { aboutProfile, journeyPreview, skillGroups } from "./aboutData";
@@ -54,22 +54,15 @@ export default function AboutPage() {
 
   return (
     <div className="about-page">
-      <header className="about-hero">
-        <div className="about-hero-copy">
-          <p className="about-eyebrow about-intro-label"><span aria-hidden="true" className="about-intro-mark" /> ABOUT / {aboutProfile.name.toUpperCase()}</p>
-          <h1>A builder at heart.<br /><span>Curious by nature.</span></h1>
-          <p className="about-introduction">{aboutProfile.introduction}</p>
-          <div className="about-hero-actions">
-            <button aria-haspopup="dialog" className="about-primary-button" onClick={openJourney}>
-              Explore my journey <Arrow />
-            </button>
-            <a className="about-resume-link" href={siteConfig.resumeUrl} rel="noopener noreferrer" target="_blank">
-              Download résumé <Arrow diagonal />
-            </a>
-          </div>
-        </div>
-        <ProfilePortrait profile={aboutProfile} />
-      </header>
+      <ProfileHero
+        profile={aboutProfile}
+        eyebrow={"ABOUT / " + aboutProfile.name.toUpperCase()}
+        title="A builder at heart."
+        accent="Curious by nature."
+        description={aboutProfile.introduction}
+        primaryAction={<button aria-haspopup="dialog" onClick={openJourney}>Explore my journey <Arrow /></button>}
+        secondaryAction={<a href={siteConfig.resumeUrl} rel="noopener noreferrer" target="_blank">Download résumé <Arrow diagonal /></a>}
+      />
 
       <div className="about-chapters-row">
         {currentCompany && (
