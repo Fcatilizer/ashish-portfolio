@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { currentCompany } from "@/app/projects/workProjectsData";
 import { JourneyModal } from "@/components/journey-modal";
 import { ProjectBadge } from "@/components/project-badge";
-import { ProfileHero } from "@/components/profile-hero";
+import { PageHero } from "@/components/page-hero";
+import { ProfilePortrait } from "@/components/profile-portrait";
 import { siteConfig } from "@/config/site";
 
 import { aboutProfile, journeyPreview, skillGroups } from "./aboutData";
@@ -54,8 +55,9 @@ export default function AboutPage() {
 
   return (
     <div className="about-page">
-      <ProfileHero
-        profile={aboutProfile}
+      <PageHero
+        variant="profile"
+        aside={<ProfilePortrait profile={aboutProfile} />}
         eyebrow={"ABOUT / " + aboutProfile.name.toUpperCase()}
         title="A builder at heart."
         accent="Curious by nature."

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { ProjectCard } from "@/components/project-card";
 import { ProjectModal } from "@/components/project-modal";
+import { PageHero } from "@/components/page-hero";
 
 import {
   personalProjects,
@@ -75,16 +76,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="projects-page">
-      <header className="projects-intro">
-        <div className="intro-main">
-          <p className="eyebrow"><span className="intro-mark" /> THE WORK COLLECTION</p>
-          <h1>Thoughtfully built.<br /><span>Connected by purpose.</span></h1>
-          <p className="intro-description">
-            Web platforms, mobile apps, and the systems in between.
-            A closer look at my work, one collaboration at a time.
-          </p>
-        </div>
-        {currentCompany && <a
+      <PageHero
+        eyebrow="THE WORK COLLECTION"
+        title="Thoughtfully built."
+        accent="Connected by purpose."
+        description="Web platforms, mobile apps, and the systems in between. A closer look at my work, one collaboration at a time."
+        aside={currentCompany && <a
           aria-haspopup="dialog"
           className="current-chapter"
           href={"#" + currentCompany.id}
@@ -98,7 +95,7 @@ export default function ProjectsPage() {
           <span className="current-chapter-name">{currentCompany.name} <Arrow diagonal /></span>
           <span className="current-chapter-description">{currentCompany.role || "Explore my current work."}</span>
         </a>}
-      </header>
+      />
 
       <div className="collection-toolbar">
         <div aria-label="Filter projects" className="project-filters" role="group">

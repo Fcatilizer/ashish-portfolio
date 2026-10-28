@@ -4,7 +4,7 @@
   --hero-accent: #7162a6;
   --hero-inverse: #ffffff;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 260px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
   column-gap: 70px;
   row-gap: 24px;
@@ -19,11 +19,14 @@
   --hero-inverse: #121318;
 }
 
+.withAside { grid-template-columns: minmax(0, 1fr) 260px; }
+
 .eyebrow { grid-column: 1; grid-row: 1; display: flex; align-items: center; gap: 10px; font-size: 9px; line-height: 1.6; font-weight: 500; letter-spacing: .14em; color: var(--hero-muted); }
 .mark { flex-shrink: 0; height: 8px; width: 8px; border: 1px solid var(--hero-accent); transform: rotate(45deg); }
 .copy { grid-column: 1; grid-row: 2; min-width: 0; }
-/* The portrait starts in the heading's row, so copy height never moves it. */
-.portrait { grid-column: 2; grid-row: 2; min-width: 0; }
+/* Both kinds of supporting content share the heading row. Portraits stay at its top. */
+.aside { grid-column: 2; grid-row: 2; align-self: end; min-width: 0; }
+.profile .aside { align-self: start; }
 .copy h1 { font-size: clamp(40px, 4.6vw, 63px); line-height: 1.12; font-weight: 550; letter-spacing: -.055em; }
 .copy h1 > span { display: block; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.045em; color: var(--hero-muted); }
 .description { max-width: 565px; font-size: 14px; line-height: 1.95; color: var(--hero-muted); margin-top: 23px; text-wrap: pretty; }
@@ -40,15 +43,19 @@
 }
 
 @media (max-width: 1050px) {
-  .hero { grid-template-columns: minmax(0, 1fr) 225px; column-gap: 38px; padding-right: 10px; }
+  .hero { column-gap: 38px; padding-right: 10px; }
+  .withAside { grid-template-columns: minmax(0, 1fr) 225px; }
   .copy h1 { font-size: 49px; }
 }
 
 @media (max-width: 767px) {
   .hero { grid-template-columns: minmax(0, 1fr); column-gap: 0; row-gap: 0; padding: 25px 0 32px; }
-  .portrait { grid-column: 1; grid-row: 1; margin-bottom: 27px; }
-  .eyebrow { grid-column: 1; grid-row: 2; gap: 8px; margin-bottom: 19px; font-size: 8px; letter-spacing: .09em; }
-  .copy { grid-column: 1; grid-row: 3; }
+  .aside { grid-column: 1; grid-row: 3; margin-top: 25px; }
+  .eyebrow { grid-column: 1; grid-row: 1; gap: 8px; margin-bottom: 19px; font-size: 8px; letter-spacing: .09em; }
+  .copy { grid-column: 1; grid-row: 2; }
+  .profile .aside { grid-row: 1; margin-top: 0; margin-bottom: 27px; }
+  .profile .eyebrow { grid-row: 2; }
+  .profile .copy { grid-row: 3; }
   .copy h1 { font-size: clamp(32px, 7.9vw, 47px); }
   .description { max-width: 565px; font-size: 12px; margin-top: 19px; }
   .actions { column-gap: 22px; row-gap: 15px; margin-top: 22px; }

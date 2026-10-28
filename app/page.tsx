@@ -5,7 +5,8 @@ import { aboutProfile } from "@/app/about/aboutData";
 import { currentCompany, projectGroups } from "@/app/projects/workProjectsData";
 import { ProjectBadge } from "@/components/project-badge";
 import { ProjectCard } from "@/components/project-card";
-import { ProfileHero } from "@/components/profile-hero";
+import { PageHero } from "@/components/page-hero";
+import { ProfilePortrait } from "@/components/profile-portrait";
 import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
 import { siteConfig } from "@/config/site";
 
@@ -34,8 +35,9 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <ProfileHero
-        profile={aboutProfile}
+      <PageHero
+        variant="profile"
+        aside={<ProfilePortrait profile={aboutProfile} />}
         eyebrow={homeContent.eyebrow}
         title={homeContent.headline}
         accent={homeContent.headlineAccent}

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+import { PageHero } from "@/components/page-hero";
+
 import {
   certificateCategories,
   certificatePlatforms,
@@ -66,27 +68,25 @@ export default function CertificatesPage() {
 
   return (
     <div className="certificates-page">
-      <header className="certificates-intro">
-        <div>
-          <p className="certificates-eyebrow certificates-intro-label"><span aria-hidden="true" className="certificates-intro-mark" /> LEARNING / CREDENTIALS</p>
-          <h1>Certificates &<br /><span>continued learning.</span></h1>
-          <p className="certificates-description">
-            Courses in web development, cloud computing, and version control
-            that support the way I build software.
-          </p>
-        </div>
-        <aside aria-label="Course providers" className="certificates-providers">
-          <span className="certificates-eyebrow">COURSES FROM</span>
-          <div className="certificates-provider-list">
-            {providers.map((provider) => (
-              <div key={provider.issuer + "-" + provider.platform.name} className="certificates-provider">
-                <Image alt={provider.platform.name + " logo"} height={64} src={provider.platform.logo} width={64} />
-                <div><strong>{provider.issuer}</strong><span>via {provider.platform.name}</span></div>
-              </div>
-            ))}
-          </div>
-        </aside>
-      </header>
+      <PageHero
+        eyebrow="LEARNING / CREDENTIALS"
+        title="Certificates &"
+        accent="continued learning."
+        description="Courses in web development, cloud computing, and version control that support the way I build software."
+        aside={
+          <aside aria-label="Course providers" className="certificates-providers">
+            <span className="certificates-eyebrow">COURSES FROM</span>
+            <div className="certificates-provider-list">
+              {providers.map((provider) => (
+                <div key={provider.issuer + "-" + provider.platform.name} className="certificates-provider">
+                  <Image alt={provider.platform.name + " logo"} height={64} src={provider.platform.logo} width={64} />
+                  <div><strong>{provider.issuer}</strong><span>via {provider.platform.name}</span></div>
+                </div>
+              ))}
+            </div>
+          </aside>
+        }
+      />
 
       <div className="certificates-toolbar">
         <div aria-label="Filter certificates" className="certificates-filters" role="group">
