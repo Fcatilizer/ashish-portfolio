@@ -1,0 +1,36 @@
+.portrait {
+  --portrait-text: #24262e;
+  --portrait-muted: #6b6f7b;
+  --portrait-border: #e4e5ec;
+  --portrait-surface: #f5f5f8;
+  --portrait-accent: #7162a6;
+  min-width: 0;
+}
+
+:global(.dark) .portrait {
+  --portrait-text: #eeeff3;
+  --portrait-muted: #989ba8;
+  --portrait-border: #282a33;
+  --portrait-surface: #17181e;
+  --portrait-accent: #bbb1e1;
+}
+
+.visual { position: relative; isolation: isolate; }
+.visual::before { content: ""; position: absolute; inset: 14px -12px -1px 0; border: 1px solid var(--portrait-border); border-radius: 16px; transform: rotate(4deg); z-index: -1; pointer-events: none; }
+.frame { position: relative; width: 100%; aspect-ratio: 65 / 72; overflow: hidden; border-radius: 14px; background: var(--portrait-surface); border: 1px solid var(--portrait-border); }
+.frame > img { object-fit: cover; object-position: 50% 35%; }
+.caption { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; color: var(--portrait-muted); font-size: 9px; line-height: 1.5; }
+.name { color: var(--portrait-text); }
+.caption > a { display: inline-flex; align-items: center; gap: 5px; }
+.caption > a:hover { color: var(--portrait-text); }
+.caption svg { width: 10px; height: 10px; flex-shrink: 0; }
+.caption > a:focus-visible { outline: 2px solid var(--portrait-accent); outline-offset: 4px; border-radius: 2px; }
+
+@media (max-width: 767px) {
+  .portrait { display: flex; align-items: center; gap: 22px; }
+  .visual { width: 90px; flex-shrink: 0; }
+  .visual::before { inset: 6px -5px -1px 0; border-radius: 11px; }
+  .frame { border-radius: 10px; }
+  .caption { flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; margin-top: 0; font-size: 10px; min-width: 0; }
+  .name { font-size: 16px; font-weight: 500; letter-spacing: -.02em; }
+}

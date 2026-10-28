@@ -25,7 +25,7 @@
 }
 
 .home-eyebrow { font-size: 9px; line-height: 1.6; font-weight: 500; letter-spacing: .14em; color: var(--h-muted); }
-.home-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; align-items: center; gap: 70px; padding: 0 0 45px; }
+.home-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; align-items: center; gap: 70px; padding: 0 28px 45px 0; }
 .home-intro-label { display: flex; align-items: center; gap: 10px; margin-bottom: 26px; }
 .home-intro-mark { flex-shrink: 0; height: 8px; width: 8px; border: 1px solid var(--h-accent); transform: rotate(45deg); }
 .home-hero h1 { font-size: clamp(40px, 4.9vw, 70px); line-height: 1.12; font-weight: 550; letter-spacing: -.055em; }
@@ -38,14 +38,6 @@
 .home-text-link:hover { color: var(--h-text); }
 .home-primary-link svg, .home-text-link svg, .home-now-action svg, .home-explore-link svg { height: 15px; width: 15px; flex-shrink: 0; transition: transform .2s; }
 .home-text-link:hover svg { transform: translateX(2px); }
-.home-portrait { padding-top: 9px; }
-.home-portrait-frame { position: relative; height: 290px; border-radius: 12px; overflow: hidden; background: var(--h-soft); border: 1px solid var(--h-border); }
-.home-portrait-frame img { object-fit: cover; object-position: 50% 35%; }
-.home-portrait figcaption { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 9px; color: var(--h-muted); }
-.home-portrait figcaption > span { color: var(--h-text); }
-.home-portrait figcaption a { display: flex; align-items: center; gap: 5px; }
-.home-portrait figcaption a:hover { color: var(--h-text); }
-.home-portrait figcaption svg { width: 10px; height: 10px; }
 .home-now { display: grid; grid-template-columns: 1fr 1.1fr auto; gap: 40px; align-items: center; padding: 26px 28px; border: 1px solid var(--h-border); border-radius: 12px; background: var(--h-surface); transition: border-color .2s, background .2s; }
 .home-now:hover { border-color: var(--h-faint); background: var(--h-soft); }
 .home-now-company > .home-eyebrow { display: block; font-size: 8px; }
@@ -92,9 +84,8 @@
 }
 
 @media (max-width: 1050px) {
-  .home-hero { gap: 35px; grid-template-columns: minmax(0, 1fr) 210px; }
+  .home-hero { gap: 35px; grid-template-columns: minmax(0, 1fr) 210px; padding-right: 10px; }
   .home-hero h1 { font-size: clamp(40px, 5.4vw, 58px); }
-  .home-portrait-frame { height: 260px; }
   .home-now { gap: 22px; padding: 24px; }
   .home-now-summary { padding-left: 22px; font-size: 11px; }
   .home-now-action { gap: 17px; }
@@ -104,14 +95,13 @@
 
 @media (max-width: 767px) {
   .home-page { padding-top: 25px; }
-  .home-hero { gap: 25px; padding-bottom: 32px; }
+  .home-hero { display: flex; flex-direction: column-reverse; align-items: stretch; gap: 27px; padding: 0 0 32px; }
   .home-hero h1 { font-size: clamp(35px, 5.6vw, 45px); }
   .home-intro-label { font-size: 7px; letter-spacing: .09em; margin-bottom: 20px; gap: 8px; }
   .home-introduction { font-size: 12px; margin-top: 19px; }
   .home-hero-actions { gap: 17px; margin-top: 22px; }
   .home-primary-link { font-size: 10px; padding: 12px 14px; gap: 17px; }
   .home-hero-actions .home-text-link { font-size: 10px; gap: 7px; }
-  .home-portrait figcaption { font-size: 8px; flex-direction: column; gap: 5px; align-items: flex-start; }
   .home-now { grid-template-columns: 1fr auto; gap: 18px; }
   .home-now-company { grid-column: 1 / -1; }
   .home-now-company > .home-eyebrow { font-size: 7px; }
@@ -134,11 +124,6 @@
 }
 
 @media (max-width: 600px) {
-  .home-hero { display: flex; flex-direction: column-reverse; align-items: stretch; gap: 25px; }
-  .home-portrait { display: flex; align-items: center; gap: 17px; padding: 0; }
-  .home-portrait-frame { height: 100px; width: 90px; border-radius: 10px; flex-shrink: 0; }
-  .home-portrait figcaption { margin: 0; gap: 8px; font-size: 10px; }
-  .home-portrait figcaption > span { font-size: 16px; letter-spacing: -.02em; font-weight: 500; }
   .home-hero h1 { font-size: clamp(32px, 7.9vw, 47px); }
   .home-intro-label { font-size: 7px; margin-bottom: 17px; }
   .home-introduction { max-width: 450px; }

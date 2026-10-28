@@ -6,6 +6,8 @@ import { siteConfig } from "@/config/site";
 // Current company details and project links come from workProjectsData.ts.
 export const aboutProfile = {
   name: siteConfig.name,
+  // Shared Home and About portrait. Its frame and responsive layout live in ProfilePortrait.
+  portrait: "/me.jpg",
   introduction:
     "I'm Ashish, a software engineer based in Patna, India. I work with Python and Django, build mobile apps with Flutter, and connect the interfaces people use with the systems behind them.",
   location: "Patna, Bihar, India",

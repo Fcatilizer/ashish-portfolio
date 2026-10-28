@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { currentCompany } from "@/app/projects/workProjectsData";
 import { JourneyModal } from "@/components/journey-modal";
 import { ProjectBadge } from "@/components/project-badge";
+import { ProfilePortrait } from "@/components/profile-portrait";
 import { siteConfig } from "@/config/site";
 
 import { aboutProfile, journeyPreview, skillGroups } from "./aboutData";
@@ -67,21 +68,7 @@ export default function AboutPage() {
             </a>
           </div>
         </div>
-        <figure className="about-portrait">
-          <div className="about-portrait-frame">
-            <Image
-              fill
-              priority
-              alt={aboutProfile.name}
-              sizes="(max-width: 767px) 180px, 260px"
-              src="/me.jpg"
-            />
-          </div>
-          <figcaption>
-            <span className="about-location-dot" />
-            <a href={aboutProfile.locationUrl} rel="noopener noreferrer" target="_blank">{aboutProfile.location} <span aria-hidden="true">↗</span></a>
-          </figcaption>
-        </figure>
+        <ProfilePortrait profile={aboutProfile} />
       </header>
 
       <div className="about-chapters-row">

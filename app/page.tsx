@@ -5,6 +5,7 @@ import { aboutProfile } from "@/app/about/aboutData";
 import { currentCompany, projectGroups } from "@/app/projects/workProjectsData";
 import { ProjectBadge } from "@/components/project-badge";
 import { ProjectCard } from "@/components/project-card";
+import { ProfilePortrait } from "@/components/profile-portrait";
 import { QuoteModalTrigger } from "@/components/quote-modal-trigger";
 import { siteConfig } from "@/config/site";
 
@@ -47,21 +48,7 @@ export default function Home() {
           </div>
         </div>
 
-        <figure className="home-portrait">
-          <div className="home-portrait-frame">
-            <Image
-              fill
-              priority
-              alt={aboutProfile.name}
-              sizes="(max-width: 600px) 100px, (max-width: 900px) 210px, 260px"
-              src="/me.jpg"
-            />
-          </div>
-          <figcaption>
-            <span>{aboutProfile.name}</span>
-            <a href={aboutProfile.locationUrl} rel="noopener noreferrer" target="_blank">{aboutProfile.location} <Arrow diagonal /></a>
-          </figcaption>
-        </figure>
+        <ProfilePortrait profile={aboutProfile} />
       </header>
 
       {currentCompany && (
